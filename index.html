@@ -1,0 +1,927 @@
+<!doctype html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>elde.kz — Қазақстан жаңалықтары</title>
+<meta name="description" content="elde.kz — Қазақстан мен әлемнің басты жаңалықтары: саясат, экономика, қоғам, аймақтар, спорт, мәдениет.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  try { var t = localStorage.getItem('elde-theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<style>
+/* ── direction A «Классика»: white page, hairline rules instead of cards, square photos,
+      one navy ink + logo red used only for kickers, live marks and the play shape ── */
+:root {
+  --bg: #FFFFFF;
+  --soft: #F4F6F9;          /* ad slots, map field */
+  --ink: #00142F;           /* logo navy */
+  --ink-2: #26334D;
+  --muted: #5B6577;         /* 5.9:1 on white */
+  --line: #E2E6EC;
+  --rule: #00142F;          /* section top rules */
+  --red: #C8000D;           /* text red, 6.0:1 on white */
+  --brand: #E3000F;         /* logo red, marks only */
+  --on-red: #FFFFFF;
+  --map: #DCE2EB;
+  --img: #E9ECF1;
+  --font: "Onest", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --wrap: 1280px;
+  --gut: 32px;
+  --col-gap: 24px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0A1120; --soft: #111A2C; --ink: #EEF1F6; --ink-2: #C9D1DE; --muted: #9AA5B8; --line: #1F2A40;
+    --rule: #EEF1F6; --red: #FF5C64; --map: #1C2840; --img: #172238; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0A1120; --soft: #111A2C; --ink: #EEF1F6; --ink-2: #C9D1DE; --muted: #9AA5B8; --line: #1F2A40;
+  --rule: #EEF1F6; --red: #FF5C64; --map: #1C2840; --img: #172238; color-scheme: dark;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 64px; }
+body { background: var(--bg); color: var(--ink); font: 400 16px/1.5 var(--font); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; color: inherit; }
+button { background: none; border: 0; cursor: pointer; }
+ul, ol { list-style: none; }
+img { display: block; width: 100%; height: 100%; object-fit: cover; background: var(--img); }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gut); }
+.sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: 16px; top: -60px; z-index: 100; background: var(--ink); color: var(--bg); padding: 10px 16px; font-weight: 600; }
+.skip:focus { top: 12px; }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+svg.i { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
+
+/* ── story atoms ── */
+.story { position: relative; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.story .ph { aspect-ratio: 16 / 9; overflow: hidden; }
+.story h2, .story h3 { font-weight: 700; letter-spacing: -.012em; text-wrap: balance; }
+.story h3 { font-size: 18px; line-height: 1.3; }
+.story a.go::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.story:hover a.go { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.story p { color: var(--ink-2); font-size: 15px; line-height: 1.5; }
+.kick { font-size: 13px; font-weight: 600; color: var(--red); }
+.meta { display: flex; flex-wrap: wrap; gap: 2px 12px; font-size: 13px; color: var(--muted); align-items: center; }
+.meta span + span::before { content: ""; display: inline-block; width: 1px; height: 11px; background: var(--line); margin-right: 12px; vertical-align: -1px; }
+.ruled > * { position: relative; }
+.ruled > * + *::before { content: ""; position: absolute; left: calc(var(--col-gap) / -2); top: 0; bottom: 0; border-left: 1px solid var(--line); }
+
+/* ── utility strip ── */
+.util { border-bottom: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+.util .wrap { display: flex; align-items: center; gap: 20px; height: 36px; white-space: nowrap; }
+.util b { color: var(--ink); font-weight: 600; }
+.util .rates { display: flex; gap: 14px; }
+.up { color: #11843A; } .dn { color: var(--red); }
+:root[data-theme="dark"] .up { color: #4ADE80; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .up { color: #4ADE80; } }
+.util .end { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+.lang a { padding: 4px 6px; font-weight: 600; font-size: 12px; letter-spacing: .04em; }
+.lang a[aria-current="true"] { color: var(--ink); box-shadow: inset 0 -2px var(--brand); }
+.lang a:hover { color: var(--ink); }
+
+/* ── masthead: logo centred ── */
+.mast .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 92px; }
+.mast .left, .mast .right { display: flex; align-items: center; gap: 4px; }
+.mast .right { justify-content: flex-end; gap: 10px; }
+.tbtn { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 10px; font-weight: 600; font-size: 14px; color: var(--ink); }
+.tbtn:hover { color: var(--red); }
+.ibtn { width: 40px; height: 40px; display: grid; place-items: center; color: var(--ink); }
+.ibtn:hover { color: var(--red); }
+.logo { display: block; color: var(--ink); }
+.logo .lg { display: block; height: 46px; width: calc(46px * 4.289); }
+.btn-sub { height: 38px; padding: 0 16px; background: var(--ink); color: var(--bg); font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; }
+.btn-sub:hover { background: var(--red); color: #fff; }
+.mast .m-search { display: none; }
+.theme .sun { display: none; }
+:root[data-theme="dark"] .theme .sun { display: block; } :root[data-theme="dark"] .theme .moon { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme .sun { display: block; }
+  :root:not([data-theme="light"]) .theme .moon { display: none; }
+}
+
+/* ── section nav: sticky, shrinks into a compact bar with a mini logo ── */
+.secnav { position: sticky; top: 0; z-index: 30; background: var(--bg); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.secnav .wrap { display: flex; align-items: center; gap: 8px; height: 48px; }
+.secnav .mini { display: none; color: var(--ink); margin-right: 8px; }
+.secnav .mini .lg { height: 24px; width: calc(24px * 4.289); display: block; }
+.secnav.stuck { box-shadow: 0 1px 0 var(--line), 0 6px 16px rgba(0, 20, 47, .06); }
+.secnav.stuck .mini { display: block; }
+.secnav ul { display: flex; justify-content: center; flex: 1; min-width: 0; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+.secnav ul::-webkit-scrollbar { display: none; }
+.secnav li a { display: flex; align-items: center; height: 48px; padding: 0 12px; font-weight: 600; font-size: 15px; color: var(--ink-2); white-space: nowrap; position: relative; }
+.secnav li a:hover { color: var(--ink); }
+.secnav li a[aria-current="page"] { color: var(--ink); }
+.secnav li a[aria-current="page"]::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: -1px; height: 3px; background: var(--brand); }
+.secnav .search-mini { display: none; }
+.secnav.stuck .search-mini { display: grid; }
+
+/* ── breaking ── */
+.breaking { background: var(--brand); color: #fff; }
+.breaking .wrap { display: flex; align-items: center; gap: 14px; min-height: 48px; }
+.breaking .tag { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: 13px; letter-spacing: .08em; flex: none; }
+.breaking .tag svg { width: 12px; height: 14px; fill: #fff; animation: blink 1.6s ease-in-out infinite; }
+@keyframes blink { 50% { opacity: .35; } }
+.breaking time { font-weight: 700; font-variant-numeric: tabular-nums; opacity: .85; flex: none; }
+.breaking a { font-weight: 600; flex: 1; }
+.breaking a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.breaking .ibtn { color: #fff; margin-right: -10px; }
+.breaking[hidden] { display: none; }
+
+/* ── ads ── */
+.ad { display: grid; place-items: center; padding: 20px 0; }
+.ad .slot { width: min(970px, 100%); height: 90px; background: var(--soft); display: grid; place-items: center; font-size: 12px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+.ad.big .slot { height: 250px; }
+.ad.bordered { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin: 48px 0 0; }
+
+/* ── top block: lead text | lead photo | latest feed ── */
+.top { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); padding-top: 24px; }
+.lead { grid-column: 1 / 10; display: grid; grid-template-columns: 1fr 2fr; column-gap: var(--col-gap); align-items: start; }
+.lead .txt { display: flex; flex-direction: column; gap: 12px; padding-top: 4px; }
+.lead h1 { font-size: 34px; line-height: 1.12; font-weight: 800; letter-spacing: -.022em; text-wrap: balance; }
+.lead .txt > p { font-size: 17px; color: var(--ink-2); line-height: 1.5; }
+.lead .ph { aspect-ratio: 3 / 2; }
+.lead .ph img { object-position: 50% 35%; }
+.lead .cap { grid-column: 2; font-size: 12.5px; color: var(--muted); margin-top: 6px; }
+.related { border-top: 1px solid var(--line); padding-top: 10px; display: grid; gap: 2px; position: relative; z-index: 2; }
+.related a { display: grid; grid-template-columns: 12px 1fr; gap: 8px; font-size: 14.5px; font-weight: 600; line-height: 1.35; padding: 5px 0; color: var(--ink-2); }
+.related a::before { content: ""; width: 8px; height: 9px; margin-top: 5px; background: var(--brand); clip-path: polygon(0 0, 100% 50%, 0 100%); }
+.related a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
+.under { grid-column: 1 / 10; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--col-gap); border-top: 1px solid var(--line); margin-top: 24px; padding-top: 20px; }
+.textrow { grid-column: 1 / 10; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: var(--col-gap); border-top: 1px solid var(--line); margin-top: 24px; padding-top: 18px; }
+.textrow .story h3 { font-size: 16px; line-height: 1.35; }
+
+.feed { grid-column: 10 / 13; grid-row: 1 / span 3; border-left: 1px solid var(--line); padding-left: calc(var(--col-gap) - 1px); margin-left: calc(var(--col-gap) / -2 + 1px); display: flex; flex-direction: column; min-width: 0; }
+.tabs { display: flex; gap: 20px; border-bottom: 2px solid var(--rule); }
+.tabs button { height: 40px; font-weight: 700; font-size: 15px; color: var(--muted); position: relative; }
+.tabs button[aria-selected="true"] { color: var(--ink); }
+.tabs button[aria-selected="true"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 4px; background: var(--brand); }
+.tabs button:hover { color: var(--ink); }
+.feed ol { flex: 1; }
+.feed li a { display: grid; grid-template-columns: 44px 1fr; gap: 8px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+.feed li:last-child a { border-bottom: 0; }
+.feed time { font-size: 13px; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 1px; }
+.feed .t { font-size: 15px; font-weight: 600; line-height: 1.35; }
+.feed li a:hover .t { text-decoration: underline; text-underline-offset: 3px; }
+.feed .hot time, .feed .hot .flag { color: var(--red); }
+.feed .flag { font-size: 11px; font-weight: 800; letter-spacing: .06em; margin-right: 4px; }
+.feed .n { font-size: 22px; font-weight: 800; color: var(--brand); line-height: 1; }
+.feed .v { display: block; font-size: 12.5px; color: var(--muted); font-weight: 500; margin-top: 4px; }
+.feed [hidden] { display: none; }
+.more { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 14px; color: var(--ink); padding: 12px 0 0; border-top: 1px solid var(--line); }
+.more:hover { color: var(--red); }
+.more svg.i { width: 16px; height: 16px; }
+
+/* ── sections ── */
+.sec { margin-top: 56px; }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-top: 3px solid var(--rule); padding-top: 12px; margin-bottom: 20px; }
+.sec-head h2 { font-size: 24px; font-weight: 800; letter-spacing: -.02em; display: flex; align-items: center; gap: 10px; }
+.sec-head h2::before { content: ""; width: 13px; height: 15px; background: var(--brand); clip-path: polygon(0 0, 100% 50%, 0 100%); }
+.sec-head .all { font-size: 14px; font-weight: 600; color: var(--ink-2); display: inline-flex; align-items: center; gap: 4px; }
+.sec-head .all:hover { color: var(--red); }
+.sec-head .all svg.i { width: 16px; height: 16px; }
+
+.pair { display: grid; grid-template-columns: 1fr 1fr; column-gap: 48px; }
+.pair > div { --col-gap: 48px; }
+.pair .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.pair .feature h3 { font-size: 21px; line-height: 1.25; }
+.tlist li { border-bottom: 1px solid var(--line); }
+.tlist .story { padding: 14px 0; flex-direction: row; justify-content: space-between; gap: 16px; }
+.tlist .story h3 { font-size: 16px; line-height: 1.35; font-weight: 650; }
+.tlist .meta { flex: none; }
+
+.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--col-gap); }
+.three .col { display: flex; flex-direction: column; }
+.three .col > .story:first-child { padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+
+/* video band */
+.vband { background: #00142F; color: #fff; margin-top: 64px; padding: 36px 0 44px; --line: #1E2D4B; --muted: #A9B4C8; --ink-2: #D5DCE8; --red: #FF7A80; --rule: #FFFFFF; }
+.vband .sec { margin-top: 0; }
+.vband .sec-head .all { color: #D5DCE8; }
+.vgrid { display: grid; grid-template-columns: 2fr 1fr; column-gap: 32px; }
+.vgrid .big h3 { font-size: 26px; line-height: 1.2; }
+.vlist { display: grid; gap: 16px; align-content: start; }
+.vlist .story { display: grid; grid-template-columns: 150px 1fr; gap: 14px; align-items: start; }
+.vlist .story h3 { font-size: 16px; line-height: 1.3; }
+.vph { position: relative; }
+.play { position: absolute; left: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 8px; z-index: 0; }
+.play .pb { width: 40px; height: 40px; background: var(--brand); display: grid; place-items: center; }
+.play .pb svg { width: 14px; height: 16px; fill: #fff; margin-left: 2px; }
+.play .d { background: rgba(0, 10, 25, .78); color: #fff; font-size: 12.5px; font-weight: 700; padding: 3px 7px; font-variant-numeric: tabular-nums; }
+.vlist .play { left: 6px; bottom: 6px; gap: 4px; }
+.vlist .play .pb { width: 28px; height: 28px; }
+.vlist .play .pb svg { width: 10px; height: 12px; }
+.vlist .play .d { font-size: 11.5px; padding: 2px 5px; }
+
+/* regions + map */
+.regions { display: grid; grid-template-columns: 7fr 5fr; column-gap: 48px; align-items: start; }
+.map { position: relative; background: var(--soft); padding: 28px 28px 16px; }
+.map .field { position: relative; }
+.map svg.kz { display: block; width: 100%; height: auto; }
+.map svg.kz path { fill: var(--map); }
+.pin { position: absolute; transform: translate(-6px, -6px); display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--ink-2); white-space: nowrap; padding: 2px 4px 2px 0; }
+.pin .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--ink); box-shadow: 0 0 0 3px var(--soft); flex: none; transition: transform .15s; }
+.pin .c { font-size: 11px; font-weight: 700; color: var(--muted); }
+.pin.l { flex-direction: row-reverse; transform: translate(calc(-100% + 6px), -6px); padding: 2px 0 2px 4px; }
+.pin:hover .dot { transform: scale(1.25); }
+.pin:hover { color: var(--ink); }
+.pin[aria-pressed="true"] { color: var(--red); }
+.pin[aria-pressed="true"] .dot { background: var(--brand); transform: scale(1.35); }
+.map .hint { font-size: 13px; color: var(--muted); margin-top: 10px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.chips button { height: 32px; padding: 0 12px; border: 1px solid var(--line); font-size: 13.5px; font-weight: 600; color: var(--ink-2); }
+.chips button:hover { border-color: var(--ink); color: var(--ink); }
+.chips button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.rlist li { border-bottom: 1px solid var(--line); }
+.rlist li[hidden] { display: none; }
+.rlist .story { display: grid; grid-template-columns: 1fr 112px; gap: 14px; padding: 14px 0; }
+.rlist .story.no-img { grid-template-columns: 1fr; }
+.rlist .ph { aspect-ratio: 16 / 10; grid-column: 2; grid-row: 1; }
+.rlist .txt { display: flex; flex-direction: column; gap: 4px; }
+.rlist h3 { font-size: 16px; line-height: 1.35; }
+.place { font-size: 12.5px; font-weight: 700; color: var(--red); display: inline-flex; align-items: center; gap: 4px; }
+.place svg.i { width: 14px; height: 14px; }
+.rcount { font-size: 13px; color: var(--muted); margin: 10px 0 0; }
+
+/* opinions */
+.ops { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 48px; --col-gap: 48px; }
+.op { display: flex; flex-direction: column; gap: 16px; }
+.op blockquote { font-size: 21px; line-height: 1.38; font-weight: 600; letter-spacing: -.012em; text-wrap: pretty; }
+.op blockquote::before { content: "“"; display: block; font-size: 56px; line-height: .6; height: 26px; color: var(--brand); font-weight: 800; }
+.op .who { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+.ava { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 15px; color: #fff; background: #00142F; flex: none; }
+.who b { display: block; font-size: 15px; }
+.who span { font-size: 13px; color: var(--muted); }
+.who .ava { font-size: 15px; color: #fff; }
+
+/* digest */
+.digest { margin-top: 64px; border-top: 3px solid var(--rule); border-bottom: 1px solid var(--line); padding: 28px 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.digest h2 { font-size: 28px; line-height: 1.15; font-weight: 800; letter-spacing: -.02em; }
+.digest p { color: var(--ink-2); margin-top: 8px; }
+.sub-form { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+.sub-form input { height: 48px; border: 1px solid var(--muted); background: var(--bg); padding: 0 14px; font-size: 15px; min-width: 0; outline: none; }
+.sub-form input:focus { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.sub-form input[aria-invalid="true"] { border-color: var(--red); box-shadow: inset 0 0 0 1px var(--red); }
+.sub-form .btn-sub { height: 48px; padding: 0 22px; }
+.sub-form .note { grid-column: 1 / -1; font-size: 13px; color: var(--muted); min-height: 20px; }
+.sub-form .note.ok { color: #11843A; font-weight: 600; } .sub-form .note.err { color: var(--red); font-weight: 600; }
+.sub-form .tg { grid-column: 1 / -1; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 14px; justify-self: start; }
+.sub-form .tg:hover { color: var(--red); }
+
+/* footer */
+.foot { background: #00142F; color: #AEB8CC; margin-top: 72px; padding: 48px 0 28px; font-size: 14px; }
+.foot .logo { color: #fff; }
+.foot .logo .lg { height: 40px; width: calc(40px * 4.289); }
+.foot .cols { display: grid; grid-template-columns: 1.6fr repeat(3, 1fr) 1.1fr; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid #1C2B47; }
+.foot .about p { margin-top: 16px; max-width: 34ch; line-height: 1.6; }
+.foot .contact { margin-top: 14px; display: grid; gap: 4px; }
+.foot .contact a { color: #fff; font-weight: 600; }
+.foot h3 { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #fff; margin-bottom: 12px; }
+.foot ul a { display: inline-block; padding: 4px 0; }
+.foot a:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.soc { display: flex; gap: 8px; margin-top: 18px; }
+.soc a { width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid #2A3A5A; color: #fff; }
+.soc a:hover { background: var(--brand); border-color: var(--brand); text-decoration: none; }
+.store { display: flex; align-items: center; gap: 10px; border: 1px solid #2A3A5A; padding: 8px 12px; color: #fff; margin-bottom: 8px; }
+.store small { display: block; font-size: 11px; color: #AEB8CC; }
+.store b { font-size: 14px; }
+.store:hover { border-color: #fff; text-decoration: none !important; }
+.foot .bottom { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 20px; font-size: 13px; }
+.foot .bottom nav { display: flex; gap: 18px; }
+.age { display: inline-block; border: 1px solid #5B6B8A; color: #fff; font-weight: 700; font-size: 11px; padding: 1px 5px; margin-right: 8px; }
+
+/* drawer + search */
+.drawer, .search { position: fixed; inset: 0; z-index: 60; visibility: hidden; }
+.drawer.open, .search.open { visibility: visible; }
+.scrim { position: absolute; inset: 0; background: rgba(0, 10, 25, .5); opacity: 0; transition: opacity .2s; }
+.open .scrim { opacity: 1; }
+.drawer .panel { position: absolute; left: 0; top: 0; bottom: 0; width: min(360px, 88vw); background: var(--bg); transform: translateX(-100%); transition: transform .25s ease; display: flex; flex-direction: column; overflow-y: auto; }
+.drawer.open .panel { transform: none; }
+.drawer .ph-top { display: flex; align-items: center; justify-content: space-between; padding: 16px 16px 16px 24px; border-bottom: 1px solid var(--line); }
+.drawer .ph-top .lg { height: 28px; width: calc(28px * 4.289); display: block; color: var(--ink); }
+.drawer nav a { display: block; padding: 13px 24px; font-weight: 600; font-size: 17px; border-bottom: 1px solid var(--line); }
+.drawer nav a:hover { color: var(--red); }
+.drawer .dfoot { padding: 20px 24px; display: flex; gap: 8px; align-items: center; margin-top: auto; }
+.search .box { position: absolute; left: 0; right: 0; top: 0; background: var(--bg); transform: translateY(-100%); transition: transform .22s ease; padding: 28px 0 32px; border-bottom: 1px solid var(--line); }
+.search.open .box { transform: none; }
+.search form { display: flex; align-items: center; gap: 12px; border-bottom: 2px solid var(--ink); padding-bottom: 8px; }
+.search input { flex: 1; border: 0; outline: none; background: none; font-size: 26px; font-weight: 600; min-width: 0; }
+.search .hints { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; color: var(--muted); }
+.search .hints a { color: var(--ink-2); font-weight: 600; }
+.search .hints a:hover { color: var(--red); }
+
+/* mobile tab bar */
+.tabbar { display: none; }
+
+/* ── responsive ── */
+@media (max-width: 1120px) {
+  :root { --gut: 24px; }
+  .lead, .under, .textrow { grid-column: 1 / -1; }
+  .feed { grid-column: 1 / -1; grid-row: auto; border-left: 0; padding-left: 0; margin-left: 0; margin-top: 40px; }
+  .feed ol { columns: 2; column-gap: var(--col-gap); }
+  .feed li { break-inside: avoid; }
+  .textrow { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 16px; }
+  .textrow > :nth-child(3)::before { display: none; }
+  .pair { grid-template-columns: 1fr; row-gap: 48px; }
+  .regions { grid-template-columns: 1fr; row-gap: 24px; }
+  .foot .cols { grid-template-columns: 1fr 1fr 1fr; }
+  .foot .about { grid-column: 1 / -1; }
+  .mast .tbtn span { display: none; }
+}
+@media (max-width: 420px) { .util .rates { display: none; } }
+@media (max-width: 760px) {
+  :root { --gut: 16px; --col-gap: 16px; }
+  body { padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
+  .util .rates span:nth-child(n+2), .util .wx-extra { display: none; }
+  .util .wrap { overflow: hidden; }
+  .util .lang a { padding: 4px 4px; }
+  .util .wrap { gap: 12px; }
+  .mast .wrap { height: 60px; grid-template-columns: auto 1fr auto; gap: 8px; }
+  .mast .logo { justify-self: center; }
+  .logo .lg { height: 30px; width: calc(30px * 4.289); }
+  .mast .right .tbtn, .mast .right .btn-sub { display: none; }
+  .mast .m-search { display: grid; }
+  .mast .left .search-btn { display: none; }
+  .secnav .wrap { padding: 0; height: 44px; }
+  .secnav ul { justify-content: flex-start; padding: 0 8px; }
+  .secnav li a { height: 44px; font-size: 14.5px; padding: 0 10px; }
+  .secnav li a[aria-current="page"]::after { left: 10px; right: 10px; }
+  .secnav.stuck .mini, .secnav.stuck .search-mini { display: none; }
+  .breaking .wrap { flex-wrap: wrap; gap: 4px 10px; padding-top: 10px; padding-bottom: 10px; position: relative; }
+  .breaking a { flex-basis: 100%; order: 3; padding-right: 28px; font-size: 15px; }
+  .breaking .ibtn { position: absolute; right: 12px; top: 4px; }
+  .ad .slot { width: 320px; height: 100px; }
+  .ad.big .slot { width: 300px; height: 250px; }
+  .top { padding-top: 0; }
+  .lead { grid-template-columns: 1fr; margin: 0 calc(var(--gut) * -1); }
+  .lead > div:last-child { order: -1; }
+  .lead .ph { aspect-ratio: 16 / 10; }
+  .lead .cap { display: none; }
+  .lead .txt { padding: 16px var(--gut) 0; }
+  .lead h1 { font-size: 27px; }
+  .lead .txt > p { font-size: 16px; }
+  .under, .textrow { grid-template-columns: 1fr; margin-top: 16px; padding-top: 0; border-top: 0; }
+  .ruled > * + *::before { display: none; }
+  .under .story, .textrow .story { display: grid; grid-template-columns: 1fr 112px; gap: 12px; padding: 14px 0; border-top: 1px solid var(--line); }
+  .textrow .story { grid-template-columns: 1fr; gap: 6px; }
+  .under .story { row-gap: 6px; align-content: start; }
+  .under .story .ph { grid-column: 2; grid-row: 1 / span 3; aspect-ratio: 16 / 10; }
+  .under .story h3 { font-size: 16px; }
+  .under .story p { display: none; }
+  .feed ol { columns: 1; }
+  .sec { margin-top: 40px; }
+  .sec-head h2 { font-size: 21px; }
+  .pair .feature { grid-template-columns: 1fr; }
+  .tlist .story { flex-direction: column; gap: 6px; }
+  .three { grid-template-columns: 1fr; row-gap: 32px; }
+  .vband { margin-top: 48px; padding: 28px 0 32px; }
+  .vgrid { grid-template-columns: 1fr; row-gap: 20px; }
+  .vgrid .big h3 { font-size: 21px; }
+  .vlist .story { grid-template-columns: 120px 1fr; }
+  .map { padding: 16px 12px 12px; margin: 0 calc(var(--gut) * -1); }
+  .map { overflow: hidden; }
+  .pin { font-size: 12px; gap: 4px; padding: 7px; transform: translate(-12px, -12px); }
+  .pin.l { padding: 7px; transform: translate(calc(-100% + 12px), -12px); }
+  .pin .c, .pin .nm { display: none; }
+  .pin[aria-pressed="true"] .nm { display: inline; background: var(--soft); }
+  .pin .dot { width: 10px; height: 10px; }
+  .ops { grid-template-columns: 1fr; row-gap: 32px; }
+  .op blockquote { font-size: 19px; }
+  .digest { grid-template-columns: 1fr; gap: 20px; }
+  .digest h2 { font-size: 23px; }
+  .sub-form { grid-template-columns: 1fr; }
+  .foot .cols { grid-template-columns: 1fr 1fr; }
+  .foot .apps { grid-column: 1 / -1; }
+  .tabbar { display: grid; grid-template-columns: repeat(5, 1fr); position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; background: var(--bg); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom); }
+  .tabbar a { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 0 7px; font-size: 11px; font-weight: 600; color: var(--muted); }
+  .tabbar a[aria-current="page"] { color: var(--red); }
+  .tabbar svg.i { width: 22px; height: 22px; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#content">Мазмұнға өту</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1Z"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+  <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4Z"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3Z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12Z"/><circle cx="12" cy="9" r="2.5"/></symbol>
+  <symbol id="i-tg" viewBox="0 0 24 24"><path d="m21 4-18 7 6 2 2 6 3-4 5 4Z"/><path d="m9 13 8-6"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
+  <symbol id="i-yt" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3Z"/></symbol>
+  <symbol id="i-tt" viewBox="0 0 24 24"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.5 2.8 2.4 4.6 5 5"/></symbol>
+  <symbol id="i-apple" viewBox="0 0 24 24"><path d="M16 3c0 2-1.5 3.5-3.3 3.5C12.6 4.6 14.2 3 16 3Z"/><path d="M12 7.5c1 0 2.2-.8 3.6-.8 1.6 0 3 .9 3.8 2.3-3.2 1.7-2.6 6.2.6 7.3-.7 2-2.2 4.7-3.9 4.7-1.3 0-1.8-.8-3.4-.8-1.6 0-2.2.8-3.4.8C7.4 21 4 16.6 4 12.4c0-3.4 2.2-5.6 4.5-5.6 1.4 0 2.6.7 3.5.7Z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M5 3.5 20 12 5 20.5Z"/></symbol>
+  <symbol id="i-gp" viewBox="0 0 24 24"><path d="M4 3.5v17l9-8.5Z"/><path d="m4 3.5 12.5 7L13 12"/><path d="m4 20.5 12.5-7L13 12"/><path d="m16.5 10.5 3.5 1.5-3.5 1.5"/></symbol>
+  <symbol id="elde-logo" viewBox="-171.78571428571428 595.0 1243.7857142857142 290.0"><g transform="translate(-521.36 362.75) scale(0.8036)"><path fill="#FCA29F" fill-rule="evenodd" d="M594.83 625.49C597.26 625.14 602.74 623.41 605.37 622.15C606.61 621.56 610.04 619.49 613.00 617.56C615.96 615.62 620.96 612.34 624.12 610.27C627.29 608.20 631.06 605.79 632.50 604.92C633.94 604.06 637.36 601.85 640.10 600.02C642.83 598.19 646.04 596.11 647.22 595.39C648.41 594.67 651.34 592.79 653.75 591.21C656.16 589.63 659.22 587.67 660.57 586.85C661.91 586.04 664.61 584.32 666.57 583.03C668.52 581.74 671.14 580.06 672.38 579.30C673.61 578.54 676.03 577.02 677.75 575.92C679.47 574.82 681.89 573.28 683.12 572.49C684.36 571.70 687.34 569.79 689.75 568.24C692.16 566.69 696.83 563.71 700.12 561.62C703.42 559.53 708.15 556.47 710.62 554.82C713.10 553.17 717.09 550.59 719.50 549.08C721.91 547.58 725.87 545.06 728.31 543.49C730.75 541.91 733.57 540.10 734.56 539.46C735.56 538.82 737.78 537.44 739.50 536.41C742.61 534.54 743.76 533.81 754.19 527.15C757.18 525.24 760.98 522.83 762.62 521.79C764.27 520.76 766.36 519.44 767.25 518.87C768.14 518.29 770.79 516.64 773.12 515.19C775.46 513.74 778.95 511.57 780.88 510.37C784.25 508.26 791.14 504.02 801.12 497.93C806.87 494.43 808.33 493.39 810.70 491.14C815.66 486.44 820.48 478.26 822.00 471.95C823.19 467.06 823.55 460.32 822.87 456.00C821.56 447.70 818.07 440.47 812.31 434.12C809.47 431.01 807.75 429.68 802.25 426.36C800.12 425.07 797.19 423.23 795.75 422.26C792.71 420.23 786.37 416.13 784.00 414.67C783.11 414.12 779.79 411.97 776.62 409.89C773.46 407.81 769.66 405.32 768.18 404.36C766.70 403.41 762.99 400.98 759.93 398.96C754.31 395.26 746.76 390.29 728.17 378.08C710.02 366.16 702.86 361.46 696.23 357.12C692.66 354.79 686.62 350.82 682.81 348.31C678.99 345.80 674.02 342.52 671.75 341.03C659.73 333.13 650.19 326.82 648.75 325.83C647.19 324.75 637.09 318.04 634.25 316.19C633.49 315.70 632.09 314.73 631.12 314.04C630.16 313.35 627.91 311.86 626.12 310.73C622.07 308.16 618.03 305.45 616.42 304.24C611.58 300.57 602.49 297.75 595.52 297.75C590.03 297.75 583.60 298.83 579.65 300.41C571.59 303.65 566.46 307.50 561.77 313.86C560.39 315.73 560.11 315.99 560.04 315.51C559.96 314.99 559.88 315.04 559.22 316.03C554.62 322.87 552.25 331.19 552.25 340.54C552.25 342.59 552.18 342.98 551.76 343.37C551.28 343.80 551.17 343.77 548.19 342.31C541.53 339.04 535.55 338.07 529.33 339.27C520.35 340.99 515.36 343.40 510.06 348.59C508.10 350.52 508.00 350.58 508.00 349.90C508.00 348.96 507.66 349.24 505.75 351.75C500.09 359.19 498.25 366.07 498.25 379.85C498.25 387.39 498.12 389.22 497.59 389.42C497.27 389.54 494.12 388.30 491.75 387.12C489.02 385.76 483.19 384.04 480.19 383.72C475.13 383.17 469.34 383.92 465.16 385.65C456.99 389.04 450.63 394.45 447.57 400.62C447.16 401.45 446.31 403.64 445.68 405.50C443.59 411.65 443.73 407.06 443.76 471.12C443.79 530.42 443.81 531.29 444.84 533.75C445.04 534.23 445.38 535.32 445.61 536.18C446.39 539.20 448.59 543.23 451.01 546.08C454.20 549.84 459.56 554.06 463.17 555.66C467.74 557.68 477.33 558.75 483.00 557.88C486.66 557.32 492.70 554.78 495.86 552.47C496.95 551.67 497.87 551.54 498.10 552.15C498.18 552.36 498.25 554.89 498.25 557.76C498.25 562.01 498.35 563.47 498.77 565.67C499.85 571.26 502.94 577.85 506.50 582.13C507.66 583.53 507.89 583.71 508.00 583.28C508.11 582.84 508.38 583.03 509.96 584.63C513.29 588.02 516.72 589.88 523.67 592.08C532.81 594.97 541.85 593.88 549.42 588.97C551.86 587.38 552.10 587.69 552.35 592.62C552.64 598.50 555.58 606.41 559.34 611.46C559.85 612.14 559.97 612.21 560.05 611.83C560.11 611.48 560.31 611.63 560.91 612.50C563.62 616.42 571.60 622.17 576.38 623.65C578.93 624.45 582.42 625.30 583.88 625.49C586.09 625.77 592.87 625.78 594.83 625.49ZM682.12 512.15C681.30 511.69 680.18 511.23 679.63 511.13C678.28 510.89 674.16 506.69 673.74 505.12C671.85 498.14 670.69 495.85 668.23 494.26C666.41 493.08 666.09 493.03 659.61 492.91C652.82 492.78 652.75 492.74 649.37 487.62C648.38 486.11 647.12 484.42 646.58 483.86C644.62 481.84 640.70 480.25 637.69 480.25C634.40 480.25 627.75 481.70 627.05 482.58C626.92 482.74 626.68 485.69 626.53 489.12C626.37 492.56 626.15 495.99 626.02 496.75C625.90 497.51 625.66 499.48 625.50 501.12C625.18 504.35 624.83 505.25 623.91 505.25C623.21 505.25 619.68 503.07 616.80 500.87C615.32 499.73 614.23 499.12 613.03 498.74L611.34 498.21L608.98 499.23C607.69 499.80 605.92 500.62 605.05 501.06C603.23 501.99 602.95 501.91 602.04 500.28C601.72 499.71 600.94 498.84 600.30 498.36C599.66 497.87 598.72 496.81 598.21 496.00C597.60 495.03 596.95 494.36 596.33 494.04C594.97 493.34 594.39 492.60 593.75 490.78C593.44 489.90 592.99 488.83 592.74 488.40C591.95 487.07 590.00 481.99 590.00 481.29C590.01 480.60 593.21 477.00 593.83 477.00C594.98 476.99 596.24 476.32 597.54 475.00C598.89 473.63 600.55 472.75 601.77 472.75C602.00 472.75 602.46 472.54 602.78 472.28C603.29 471.87 603.32 471.73 603.06 471.17C602.66 470.29 600.49 469.10 598.37 468.60C596.72 468.21 596.55 468.21 595.79 468.60C595.34 468.84 594.91 469.19 594.83 469.40C594.53 470.18 593.35 470.51 591.45 470.36C589.17 470.18 588.84 469.90 588.70 468.03C588.62 466.87 588.36 466.18 587.39 464.48C585.99 462.07 585.68 461.75 584.69 461.75C583.68 461.75 583.29 461.49 581.40 459.60C578.83 457.03 578.77 456.72 580.16 453.03C580.96 450.94 581.09 450.27 581.19 447.88C581.32 444.96 581.61 444.02 582.59 443.38C582.91 443.17 583.53 442.49 583.97 441.87C585.54 439.69 586.47 439.85 587.76 442.52C589.16 445.42 590.25 444.69 590.25 440.84C590.25 438.74 590.31 438.47 590.88 437.78C591.76 436.74 598.37 431.80 599.77 431.15C600.39 430.85 601.46 430.26 602.14 429.82C603.85 428.73 604.51 428.61 605.98 429.14C607.15 429.56 607.26 429.56 608.36 429.14C609.72 428.63 610.41 428.74 611.85 429.73C612.41 430.12 613.67 430.84 614.65 431.33C615.93 431.97 617.17 432.93 619.10 434.77L621.77 437.33L622.59 436.54C623.57 435.58 624.36 435.54 625.50 436.38C626.59 437.18 626.60 437.18 628.10 436.02C629.59 434.87 631.87 433.76 632.73 433.75C633.06 433.75 633.82 434.03 634.41 434.38C635.38 434.95 635.66 435.00 637.11 434.85C638.92 434.66 639.08 434.73 641.11 436.48C642.25 437.48 642.32 437.50 644.15 437.50C645.57 437.50 646.27 437.37 647.07 436.96C647.68 436.65 648.66 436.41 649.43 436.38C650.80 436.34 651.60 435.87 651.89 434.96C652.10 434.30 651.70 433.89 649.73 432.74C648.37 431.94 647.89 431.49 647.27 430.41C646.24 428.61 646.29 428.24 647.74 426.64C648.46 425.85 649.09 424.86 649.24 424.29C649.60 422.95 650.30 422.13 651.51 421.65L652.53 421.24L652.02 420.59C651.44 419.86 651.37 419.13 651.76 418.10C651.98 417.53 651.91 417.27 651.36 416.44C649.99 414.36 651.11 413.51 655.62 413.23C657.99 413.08 659.39 412.83 662.25 412.02C664.24 411.45 667.06 410.71 668.50 410.36C675.52 408.67 683.74 406.14 690.07 403.73L691.51 403.18L693.82 403.74C698.07 404.78 698.75 405.28 698.75 407.30C698.75 407.90 698.93 408.64 699.14 408.95C699.86 409.97 700.03 411.02 699.62 411.84C699.17 412.73 699.27 412.89 700.02 412.49C700.84 412.05 702.79 412.13 703.77 412.64C704.24 412.88 705.85 413.51 707.35 414.03C710.38 415.09 711.12 415.63 711.37 416.92C711.53 417.78 711.56 417.80 712.45 417.64C713.82 417.39 720.26 414.12 723.17 412.19C725.80 410.44 726.87 410.12 727.51 410.89C727.99 411.47 727.90 412.68 727.33 413.31C726.43 414.31 726.46 414.41 728.41 416.41C735.44 423.60 740.21 429.81 741.03 432.86C741.72 435.42 742.29 435.90 743.86 435.26C745.38 434.64 745.68 434.67 747.18 435.60C748.01 436.11 748.96 436.50 749.38 436.50C750.50 436.49 753.14 435.82 754.25 435.25C755.40 434.66 756.27 434.62 757.20 435.10C758.05 435.54 760.55 438.15 761.07 439.13C761.73 440.37 765.05 443.17 766.53 443.74C768.39 444.44 769.49 444.39 771.25 443.50C773.09 442.57 773.36 442.57 774.27 443.48C775.40 444.61 775.28 445.62 773.87 447.00C772.64 448.21 772.25 449.19 772.25 451.13C772.25 452.62 771.86 453.27 770.47 454.05C769.20 454.76 768.60 455.90 768.23 458.26C767.93 460.18 767.99 460.80 768.58 462.38C768.91 463.25 768.91 463.48 768.59 464.25C767.93 465.86 766.60 466.18 764.54 465.24C763.30 464.68 758.85 464.54 757.58 465.02C756.84 465.29 755.25 466.69 755.25 467.06C755.25 467.18 755.53 467.69 755.88 468.20C757.62 470.76 756.26 472.10 749.07 474.90C745.58 476.26 745.49 476.32 746.18 477.06C747.01 477.95 748.03 480.49 748.17 482.00C748.28 483.20 748.20 483.57 747.52 484.84C747.10 485.64 746.75 486.40 746.75 486.52C746.75 486.64 747.24 487.29 747.85 487.97C749.61 489.96 749.68 492.07 748.04 494.21C747.55 494.85 746.81 495.99 746.38 496.75C745.36 498.56 744.78 498.64 742.75 497.29C741.93 496.74 740.76 496.10 740.15 495.87L739.03 495.44L737.95 496.20L736.88 496.95L729.48 497.10C721.20 497.27 720.79 497.21 718.24 495.64C716.46 494.54 716.18 494.54 714.60 495.61C710.67 498.25 702.54 500.17 699.19 499.24C697.93 498.89 697.66 499.06 694.38 502.23C692.86 503.69 690.57 505.86 689.28 507.05C687.15 509.02 686.92 509.32 686.72 510.42C686.46 511.85 685.38 513.00 684.31 513.00C683.93 512.99 682.95 512.61 682.12 512.15Z"/><path fill="#FA5654" fill-rule="evenodd" d="M594.83 625.49C597.26 625.14 602.74 623.41 605.37 622.15C606.61 621.56 610.04 619.49 613.00 617.56C615.96 615.62 620.96 612.34 624.12 610.27C627.29 608.20 631.06 605.79 632.50 604.92C633.94 604.06 637.36 601.85 640.10 600.02C642.83 598.19 646.04 596.11 647.22 595.39C648.41 594.67 651.34 592.79 653.75 591.21C656.16 589.63 659.22 587.67 660.57 586.85C661.91 586.04 664.61 584.32 666.57 583.03C668.52 581.74 671.14 580.06 672.38 579.30C673.61 578.54 676.03 577.02 677.75 575.92C679.47 574.82 681.89 573.28 683.12 572.49C684.36 571.70 687.34 569.79 689.75 568.24C692.16 566.69 696.83 563.71 700.12 561.62C703.42 559.53 708.15 556.47 710.62 554.82C713.10 553.17 717.09 550.59 719.50 549.08C721.91 547.58 725.87 545.06 728.31 543.49C730.75 541.91 733.57 540.10 734.56 539.46C735.56 538.82 737.78 537.44 739.50 536.41C742.61 534.54 743.76 533.81 754.19 527.15C757.18 525.24 760.98 522.83 762.62 521.79C764.27 520.76 766.36 519.44 767.25 518.87C768.14 518.29 770.79 516.64 773.12 515.19C775.46 513.74 778.95 511.57 780.88 510.37C784.25 508.26 791.14 504.02 801.12 497.93C806.87 494.43 808.33 493.39 810.70 491.14C815.66 486.44 820.48 478.26 822.00 471.95C823.19 467.06 823.55 460.32 822.87 456.00C821.56 447.70 818.07 440.47 812.31 434.12C809.47 431.01 807.75 429.68 802.25 426.36C800.12 425.07 797.19 423.23 795.75 422.26C792.71 420.23 786.37 416.13 784.00 414.67C783.11 414.12 779.79 411.97 776.62 409.89C773.46 407.81 769.66 405.32 768.18 404.36C766.70 403.41 762.99 400.98 759.93 398.96C754.31 395.26 746.76 390.29 728.17 378.08C710.02 366.16 702.86 361.46 696.23 357.12C692.66 354.79 686.62 350.82 682.81 348.31C678.99 345.80 674.02 342.52 671.75 341.03C659.73 333.13 650.19 326.82 648.75 325.83C647.19 324.75 637.09 318.04 634.25 316.19C633.49 315.70 632.09 314.73 631.12 314.04C630.16 313.35 627.91 311.86 626.12 310.73C622.07 308.16 618.03 305.45 616.42 304.24C611.58 300.57 602.49 297.75 595.52 297.75C590.03 297.75 583.60 298.83 579.65 300.41C571.59 303.65 566.46 307.50 561.77 313.86C560.39 315.73 560.11 315.99 560.04 315.51C559.96 314.99 559.88 315.04 559.22 316.03C554.62 322.87 552.25 331.19 552.25 340.54C552.25 342.59 552.18 342.98 551.76 343.37C551.28 343.80 551.17 343.77 548.19 342.31C541.53 339.04 535.55 338.07 529.33 339.27C519.76 341.10 514.76 343.69 508.75 349.91C503.94 354.89 501.91 358.79 500.41 366.00C499.44 370.66 499.28 372.68 499.29 380.50C499.29 384.64 499.18 388.31 499.02 389.25C498.65 391.38 498.64 549.44 499.01 550.39C499.14 550.75 499.25 553.71 499.25 556.98C499.25 565.72 499.83 568.39 503.15 574.94C506.27 581.09 509.73 585.20 514.27 588.15C517.28 590.11 524.54 592.66 529.17 593.39C535.90 594.45 543.55 592.78 549.42 588.97C551.86 587.38 552.10 587.69 552.35 592.62C552.64 598.50 555.58 606.41 559.34 611.46C559.85 612.14 559.97 612.21 560.05 611.83C560.11 611.48 560.31 611.63 560.91 612.50C563.62 616.42 571.60 622.17 576.38 623.65C578.93 624.45 582.42 625.30 583.88 625.49C586.09 625.77 592.87 625.78 594.83 625.49ZM682.12 512.15C681.30 511.69 680.18 511.23 679.63 511.13C678.28 510.89 674.16 506.69 673.74 505.12C671.85 498.14 670.69 495.85 668.23 494.26C666.41 493.08 666.09 493.03 659.61 492.91C652.82 492.78 652.75 492.74 649.37 487.62C648.38 486.11 647.12 484.42 646.58 483.86C644.62 481.84 640.70 480.25 637.69 480.25C634.40 480.25 627.75 481.70 627.05 482.58C626.92 482.74 626.68 485.69 626.53 489.12C626.37 492.56 626.15 495.99 626.02 496.75C625.90 497.51 625.66 499.48 625.50 501.12C625.18 504.35 624.83 505.25 623.91 505.25C623.21 505.25 619.68 503.07 616.80 500.87C615.32 499.73 614.23 499.12 613.03 498.74L611.34 498.21L608.98 499.23C607.69 499.80 605.92 500.62 605.05 501.06C603.23 501.99 602.95 501.91 602.04 500.28C601.72 499.71 600.94 498.84 600.30 498.36C599.66 497.87 598.72 496.81 598.21 496.00C597.60 495.03 596.95 494.36 596.33 494.04C594.97 493.34 594.39 492.60 593.75 490.78C593.44 489.90 592.99 488.83 592.74 488.40C591.95 487.07 590.00 481.99 590.00 481.29C590.01 480.60 593.21 477.00 593.83 477.00C594.98 476.99 596.24 476.32 597.54 475.00C598.89 473.63 600.55 472.75 601.77 472.75C602.00 472.75 602.46 472.54 602.78 472.28C603.29 471.87 603.32 471.73 603.06 471.17C602.66 470.29 600.49 469.10 598.37 468.60C596.72 468.21 596.55 468.21 595.79 468.60C595.34 468.84 594.91 469.19 594.83 469.40C594.53 470.18 593.35 470.51 591.45 470.36C589.17 470.18 588.84 469.90 588.70 468.03C588.62 466.87 588.36 466.18 587.39 464.48C585.99 462.07 585.68 461.75 584.69 461.75C583.68 461.75 583.29 461.49 581.40 459.60C578.83 457.03 578.77 456.72 580.16 453.03C580.96 450.94 581.09 450.27 581.19 447.88C581.32 444.96 581.61 444.02 582.59 443.38C582.91 443.17 583.53 442.49 583.97 441.87C585.54 439.69 586.47 439.85 587.76 442.52C589.16 445.42 590.25 444.69 590.25 440.84C590.25 438.74 590.31 438.47 590.88 437.78C591.76 436.74 598.37 431.80 599.77 431.15C600.39 430.85 601.46 430.26 602.14 429.82C603.85 428.73 604.51 428.61 605.98 429.14C607.15 429.56 607.26 429.56 608.36 429.14C609.72 428.63 610.41 428.74 611.85 429.73C612.41 430.12 613.67 430.84 614.65 431.33C615.93 431.97 617.17 432.93 619.10 434.77L621.77 437.33L622.59 436.54C623.57 435.58 624.36 435.54 625.50 436.38C626.59 437.18 626.60 437.18 628.10 436.02C629.59 434.87 631.87 433.76 632.73 433.75C633.06 433.75 633.82 434.03 634.41 434.38C635.38 434.95 635.66 435.00 637.11 434.85C638.92 434.66 639.08 434.73 641.11 436.48C642.25 437.48 642.32 437.50 644.15 437.50C645.57 437.50 646.27 437.37 647.07 436.96C647.68 436.65 648.66 436.41 649.43 436.38C650.80 436.34 651.60 435.87 651.89 434.96C652.10 434.30 651.70 433.89 649.73 432.74C648.37 431.94 647.89 431.49 647.27 430.41C646.24 428.61 646.29 428.24 647.74 426.64C648.46 425.85 649.09 424.86 649.24 424.29C649.60 422.95 650.30 422.13 651.51 421.65L652.53 421.24L652.02 420.59C651.44 419.86 651.37 419.13 651.76 418.10C651.98 417.53 651.91 417.27 651.36 416.44C649.99 414.36 651.11 413.51 655.62 413.23C657.99 413.08 659.39 412.83 662.25 412.02C664.24 411.45 667.06 410.71 668.50 410.36C675.52 408.67 683.74 406.14 690.07 403.73L691.51 403.18L693.82 403.74C698.07 404.78 698.75 405.28 698.75 407.30C698.75 407.90 698.93 408.64 699.14 408.95C699.86 409.97 700.03 411.02 699.62 411.84C699.17 412.73 699.27 412.89 700.02 412.49C700.84 412.05 702.79 412.13 703.77 412.64C704.24 412.88 705.85 413.51 707.35 414.03C710.38 415.09 711.12 415.63 711.37 416.92C711.53 417.78 711.56 417.80 712.45 417.64C713.82 417.39 720.26 414.12 723.17 412.19C725.80 410.44 726.87 410.12 727.51 410.89C727.99 411.47 727.90 412.68 727.33 413.31C726.43 414.31 726.46 414.41 728.41 416.41C735.44 423.60 740.21 429.81 741.03 432.86C741.72 435.42 742.29 435.90 743.86 435.26C745.38 434.64 745.68 434.67 747.18 435.60C748.01 436.11 748.96 436.50 749.38 436.50C750.50 436.49 753.14 435.82 754.25 435.25C755.40 434.66 756.27 434.62 757.20 435.10C758.05 435.54 760.55 438.15 761.07 439.13C761.73 440.37 765.05 443.17 766.53 443.74C768.39 444.44 769.49 444.39 771.25 443.50C773.09 442.57 773.36 442.57 774.27 443.48C775.40 444.61 775.28 445.62 773.87 447.00C772.64 448.21 772.25 449.19 772.25 451.13C772.25 452.62 771.86 453.27 770.47 454.05C769.20 454.76 768.60 455.90 768.23 458.26C767.93 460.18 767.99 460.80 768.58 462.38C768.91 463.25 768.91 463.48 768.59 464.25C767.93 465.86 766.60 466.18 764.54 465.24C763.30 464.68 758.85 464.54 757.58 465.02C756.84 465.29 755.25 466.69 755.25 467.06C755.25 467.18 755.53 467.69 755.88 468.20C757.62 470.76 756.26 472.10 749.07 474.90C745.58 476.26 745.49 476.32 746.18 477.06C747.01 477.95 748.03 480.49 748.17 482.00C748.28 483.20 748.20 483.57 747.52 484.84C747.10 485.64 746.75 486.40 746.75 486.52C746.75 486.64 747.24 487.29 747.85 487.97C749.61 489.96 749.68 492.07 748.04 494.21C747.55 494.85 746.81 495.99 746.38 496.75C745.36 498.56 744.78 498.64 742.75 497.29C741.93 496.74 740.76 496.10 740.15 495.87L739.03 495.44L737.95 496.20L736.88 496.95L729.48 497.10C721.20 497.27 720.79 497.21 718.24 495.64C716.46 494.54 716.18 494.54 714.60 495.61C710.67 498.25 702.54 500.17 699.19 499.24C697.93 498.89 697.66 499.06 694.38 502.23C692.86 503.69 690.57 505.86 689.28 507.05C687.15 509.02 686.92 509.32 686.72 510.42C686.46 511.85 685.38 513.00 684.31 513.00C683.93 512.99 682.95 512.61 682.12 512.15Z"/><path fill="#E3000F" fill-rule="evenodd" d="M594.83 625.49C597.26 625.14 602.74 623.41 605.37 622.15C606.61 621.56 610.04 619.49 613.00 617.56C615.96 615.62 620.96 612.34 624.12 610.27C627.29 608.20 631.06 605.79 632.50 604.92C633.94 604.06 637.36 601.85 640.10 600.02C642.83 598.19 646.04 596.11 647.22 595.39C648.41 594.67 651.34 592.79 653.75 591.21C656.16 589.63 659.22 587.67 660.57 586.85C661.91 586.04 664.61 584.32 666.57 583.03C668.52 581.74 671.14 580.06 672.38 579.30C673.61 578.54 676.03 577.02 677.75 575.92C679.47 574.82 681.89 573.28 683.12 572.49C684.36 571.70 687.34 569.79 689.75 568.24C692.16 566.69 696.83 563.71 700.12 561.62C703.42 559.53 708.15 556.47 710.62 554.82C713.10 553.17 717.09 550.59 719.50 549.08C721.91 547.58 725.87 545.06 728.31 543.49C730.75 541.91 733.57 540.10 734.56 539.46C735.56 538.82 737.78 537.44 739.50 536.41C742.61 534.54 743.76 533.81 754.19 527.15C757.18 525.24 760.98 522.83 762.62 521.79C764.27 520.76 766.36 519.44 767.25 518.87C768.14 518.29 770.79 516.64 773.12 515.19C775.46 513.74 778.95 511.57 780.88 510.37C784.25 508.26 791.14 504.02 801.12 497.93C806.87 494.43 808.33 493.39 810.70 491.14C815.66 486.44 820.48 478.26 822.00 471.95C823.19 467.06 823.55 460.32 822.87 456.00C821.56 447.70 818.07 440.47 812.31 434.12C809.47 431.01 807.75 429.68 802.25 426.36C800.12 425.07 797.19 423.23 795.75 422.26C792.71 420.23 786.37 416.13 784.00 414.67C783.11 414.12 779.79 411.97 776.62 409.89C773.46 407.81 769.66 405.32 768.18 404.36C766.70 403.41 762.99 400.98 759.93 398.96C754.31 395.26 746.76 390.29 728.17 378.08C710.02 366.16 702.86 361.46 696.23 357.12C692.66 354.79 686.62 350.82 682.81 348.31C678.99 345.80 674.02 342.52 671.75 341.03C659.73 333.13 650.19 326.82 648.75 325.83C647.19 324.75 637.09 318.04 634.25 316.19C633.49 315.70 632.09 314.73 631.12 314.04C630.16 313.35 627.91 311.86 626.12 310.73C622.07 308.16 618.03 305.45 616.42 304.24C611.58 300.57 602.49 297.75 595.52 297.75C590.03 297.75 583.60 298.83 579.65 300.41C571.58 303.65 566.51 307.47 561.77 313.86C555.44 322.40 553.41 328.15 553.08 338.38C552.96 342.35 552.86 343.28 552.46 344.07C551.99 345.00 551.98 347.59 551.84 465.59C551.70 586.12 551.70 586.16 552.20 587.39C552.55 588.24 552.75 589.47 552.85 591.34C553.22 598.15 555.76 605.31 559.83 611.01C563.78 616.53 570.85 621.94 576.38 623.65C578.93 624.45 582.42 625.30 583.88 625.49C586.09 625.77 592.87 625.78 594.83 625.49ZM682.12 512.15C681.30 511.69 680.18 511.23 679.63 511.13C678.28 510.89 674.16 506.69 673.74 505.12C671.85 498.14 670.69 495.85 668.23 494.26C666.41 493.08 666.09 493.03 659.61 492.91C652.82 492.78 652.75 492.74 649.37 487.62C648.38 486.11 647.12 484.42 646.58 483.86C644.62 481.84 640.70 480.25 637.69 480.25C634.40 480.25 627.75 481.70 627.05 482.58C626.92 482.74 626.68 485.69 626.53 489.12C626.37 492.56 626.15 495.99 626.02 496.75C625.90 497.51 625.66 499.48 625.50 501.12C625.18 504.35 624.83 505.25 623.91 505.25C623.21 505.25 619.68 503.07 616.80 500.87C615.32 499.73 614.23 499.12 613.03 498.74L611.34 498.21L608.98 499.23C607.69 499.80 605.92 500.62 605.05 501.06C603.23 501.99 602.95 501.91 602.04 500.28C601.72 499.71 600.94 498.84 600.30 498.36C599.66 497.87 598.72 496.81 598.21 496.00C597.60 495.03 596.95 494.36 596.33 494.04C594.97 493.34 594.39 492.60 593.75 490.78C593.44 489.90 592.99 488.83 592.74 488.40C591.95 487.07 590.00 481.99 590.00 481.29C590.01 480.60 593.21 477.00 593.83 477.00C594.98 476.99 596.24 476.32 597.54 475.00C598.89 473.63 600.55 472.75 601.77 472.75C602.00 472.75 602.46 472.54 602.78 472.28C603.29 471.87 603.32 471.73 603.06 471.17C602.66 470.29 600.49 469.10 598.37 468.60C596.72 468.21 596.55 468.21 595.79 468.60C595.34 468.84 594.91 469.19 594.83 469.40C594.53 470.18 593.35 470.51 591.45 470.36C589.17 470.18 588.84 469.90 588.70 468.03C588.62 466.87 588.36 466.18 587.39 464.48C585.99 462.07 585.68 461.75 584.69 461.75C583.68 461.75 583.29 461.49 581.40 459.60C578.83 457.03 578.77 456.72 580.16 453.03C580.96 450.94 581.09 450.27 581.19 447.88C581.32 444.96 581.61 444.02 582.59 443.38C582.91 443.17 583.53 442.49 583.97 441.87C585.54 439.69 586.47 439.85 587.76 442.52C589.16 445.42 590.25 444.69 590.25 440.84C590.25 438.74 590.31 438.47 590.88 437.78C591.76 436.74 598.37 431.80 599.77 431.15C600.39 430.85 601.46 430.26 602.14 429.82C603.85 428.73 604.51 428.61 605.98 429.14C607.15 429.56 607.26 429.56 608.36 429.14C609.72 428.63 610.41 428.74 611.85 429.73C612.41 430.12 613.67 430.84 614.65 431.33C615.93 431.97 617.17 432.93 619.10 434.77L621.77 437.33L622.59 436.54C623.57 435.58 624.36 435.54 625.50 436.38C626.59 437.18 626.60 437.18 628.10 436.02C629.59 434.87 631.87 433.76 632.73 433.75C633.06 433.75 633.82 434.03 634.41 434.38C635.38 434.95 635.66 435.00 637.11 434.85C638.92 434.66 639.08 434.73 641.11 436.48C642.25 437.48 642.32 437.50 644.15 437.50C645.57 437.50 646.27 437.37 647.07 436.96C647.68 436.65 648.66 436.41 649.43 436.38C650.80 436.34 651.60 435.87 651.89 434.96C652.10 434.30 651.70 433.89 649.73 432.74C648.37 431.94 647.89 431.49 647.27 430.41C646.24 428.61 646.29 428.24 647.74 426.64C648.46 425.85 649.09 424.86 649.24 424.29C649.60 422.95 650.30 422.13 651.51 421.65L652.53 421.24L652.02 420.59C651.44 419.86 651.37 419.13 651.76 418.10C651.98 417.53 651.91 417.27 651.36 416.44C649.99 414.36 651.11 413.51 655.62 413.23C657.99 413.08 659.39 412.83 662.25 412.02C664.24 411.45 667.06 410.71 668.50 410.36C675.52 408.67 683.74 406.14 690.07 403.73L691.51 403.18L693.82 403.74C698.07 404.78 698.75 405.28 698.75 407.30C698.75 407.90 698.93 408.64 699.14 408.95C699.86 409.97 700.03 411.02 699.62 411.84C699.17 412.73 699.27 412.89 700.02 412.49C700.84 412.05 702.79 412.13 703.77 412.64C704.24 412.88 705.85 413.51 707.35 414.03C710.38 415.09 711.12 415.63 711.37 416.92C711.53 417.78 711.56 417.80 712.45 417.64C713.82 417.39 720.26 414.12 723.17 412.19C725.80 410.44 726.87 410.12 727.51 410.89C727.99 411.47 727.90 412.68 727.33 413.31C726.43 414.31 726.46 414.41 728.41 416.41C735.44 423.60 740.21 429.81 741.03 432.86C741.72 435.42 742.29 435.90 743.86 435.26C745.38 434.64 745.68 434.67 747.18 435.60C748.01 436.11 748.96 436.50 749.38 436.50C750.50 436.49 753.14 435.82 754.25 435.25C755.40 434.66 756.27 434.62 757.20 435.10C758.05 435.54 760.55 438.15 761.07 439.13C761.73 440.37 765.05 443.17 766.53 443.74C768.39 444.44 769.49 444.39 771.25 443.50C773.09 442.57 773.36 442.57 774.27 443.48C775.40 444.61 775.28 445.62 773.87 447.00C772.64 448.21 772.25 449.19 772.25 451.13C772.25 452.62 771.86 453.27 770.47 454.05C769.20 454.76 768.60 455.90 768.23 458.26C767.93 460.18 767.99 460.80 768.58 462.38C768.91 463.25 768.91 463.48 768.59 464.25C767.93 465.86 766.60 466.18 764.54 465.24C763.30 464.68 758.85 464.54 757.58 465.02C756.84 465.29 755.25 466.69 755.25 467.06C755.25 467.18 755.53 467.69 755.88 468.20C757.62 470.76 756.26 472.10 749.07 474.90C745.58 476.26 745.49 476.32 746.18 477.06C747.01 477.95 748.03 480.49 748.17 482.00C748.28 483.20 748.20 483.57 747.52 484.84C747.10 485.64 746.75 486.40 746.75 486.52C746.75 486.64 747.24 487.29 747.85 487.97C749.61 489.96 749.68 492.07 748.04 494.21C747.55 494.85 746.81 495.99 746.38 496.75C745.36 498.56 744.78 498.64 742.75 497.29C741.93 496.74 740.76 496.10 740.15 495.87L739.03 495.44L737.95 496.20L736.88 496.95L729.48 497.10C721.20 497.27 720.79 497.21 718.24 495.64C716.46 494.54 716.18 494.54 714.60 495.61C710.67 498.25 702.54 500.17 699.19 499.24C697.93 498.89 697.66 499.06 694.38 502.23C692.86 503.69 690.57 505.86 689.28 507.05C687.15 509.02 686.92 509.32 686.72 510.42C686.46 511.85 685.38 513.00 684.31 513.00C683.93 512.99 682.95 512.61 682.12 512.15Z"/><path fill="#FFFFFF" fill-rule="evenodd" d="M682.12 512.15C681.30 511.69 680.18 511.23 679.63 511.13C678.28 510.89 674.16 506.69 673.74 505.12C671.85 498.14 670.69 495.85 668.23 494.26C666.41 493.08 666.09 493.03 659.61 492.91C652.82 492.78 652.75 492.74 649.37 487.62C648.38 486.11 647.12 484.42 646.58 483.86C644.62 481.84 640.70 480.25 637.69 480.25C634.40 480.25 627.75 481.70 627.05 482.58C626.92 482.74 626.68 485.69 626.53 489.12C626.37 492.56 626.15 495.99 626.02 496.75C625.90 497.51 625.66 499.48 625.50 501.12C625.18 504.35 624.83 505.25 623.91 505.25C623.21 505.25 619.68 503.07 616.80 500.87C615.32 499.73 614.23 499.12 613.03 498.74L611.34 498.21L608.98 499.23C607.69 499.80 605.92 500.62 605.05 501.06C603.23 501.99 602.95 501.91 602.04 500.28C601.72 499.71 600.94 498.84 600.30 498.36C599.66 497.87 598.72 496.81 598.21 496.00C597.60 495.03 596.95 494.36 596.33 494.04C594.97 493.34 594.39 492.60 593.75 490.78C593.44 489.90 592.99 488.83 592.74 488.40C591.95 487.07 590.00 481.99 590.00 481.29C590.01 480.60 593.21 477.00 593.83 477.00C594.98 476.99 596.24 476.32 597.54 475.00C598.89 473.63 600.55 472.75 601.77 472.75C602.00 472.75 602.46 472.54 602.78 472.28C603.29 471.87 603.32 471.73 603.06 471.17C602.66 470.29 600.49 469.10 598.37 468.60C596.72 468.21 596.55 468.21 595.79 468.60C595.34 468.84 594.91 469.19 594.83 469.40C594.53 470.18 593.35 470.51 591.45 470.36C589.17 470.18 588.84 469.90 588.70 468.03C588.62 466.87 588.36 466.18 587.39 464.48C585.99 462.07 585.68 461.75 584.69 461.75C583.68 461.75 583.29 461.49 581.40 459.60C578.83 457.03 578.77 456.72 580.16 453.03C580.96 450.94 581.09 450.27 581.19 447.88C581.32 444.96 581.61 444.02 582.59 443.38C582.91 443.17 583.53 442.49 583.97 441.87C585.54 439.69 586.47 439.85 587.76 442.52C589.16 445.42 590.25 444.69 590.25 440.84C590.25 438.74 590.31 438.47 590.88 437.78C591.76 436.74 598.37 431.80 599.77 431.15C600.39 430.85 601.46 430.26 602.14 429.82C603.85 428.73 604.51 428.61 605.98 429.14C607.15 429.56 607.26 429.56 608.36 429.14C609.72 428.63 610.41 428.74 611.85 429.73C612.41 430.12 613.67 430.84 614.65 431.33C615.93 431.97 617.17 432.93 619.10 434.77L621.77 437.33L622.59 436.54C623.57 435.58 624.36 435.54 625.50 436.38C626.59 437.18 626.60 437.18 628.10 436.02C629.59 434.87 631.87 433.76 632.73 433.75C633.06 433.75 633.82 434.03 634.41 434.38C635.38 434.95 635.66 435.00 637.11 434.85C638.92 434.66 639.08 434.73 641.11 436.48C642.25 437.48 642.32 437.50 644.15 437.50C645.57 437.50 646.27 437.37 647.07 436.96C647.68 436.65 648.66 436.41 649.43 436.38C650.80 436.34 651.60 435.87 651.89 434.96C652.10 434.30 651.70 433.89 649.73 432.74C648.37 431.94 647.89 431.49 647.27 430.41C646.24 428.61 646.29 428.24 647.74 426.64C648.46 425.85 649.09 424.86 649.24 424.29C649.60 422.95 650.30 422.13 651.51 421.65L652.53 421.24L652.02 420.59C651.44 419.86 651.37 419.13 651.76 418.10C651.98 417.53 651.91 417.27 651.36 416.44C649.99 414.36 651.11 413.51 655.62 413.23C657.99 413.08 659.39 412.83 662.25 412.02C664.24 411.45 667.06 410.71 668.50 410.36C675.52 408.67 683.74 406.14 690.07 403.73L691.51 403.18L693.82 403.74C698.07 404.78 698.75 405.28 698.75 407.30C698.75 407.90 698.93 408.64 699.14 408.95C699.86 409.97 700.03 411.02 699.62 411.84C699.17 412.73 699.27 412.89 700.02 412.49C700.84 412.05 702.79 412.13 703.77 412.64C704.24 412.88 705.85 413.51 707.35 414.03C710.38 415.09 711.12 415.63 711.37 416.92C711.53 417.78 711.56 417.80 712.45 417.64C713.82 417.39 720.26 414.12 723.17 412.19C725.80 410.44 726.87 410.12 727.51 410.89C727.99 411.47 727.90 412.68 727.33 413.31C726.43 414.31 726.46 414.41 728.41 416.41C735.44 423.60 740.21 429.81 741.03 432.86C741.72 435.42 742.29 435.90 743.86 435.26C745.38 434.64 745.68 434.67 747.18 435.60C748.01 436.11 748.96 436.50 749.38 436.50C750.50 436.49 753.14 435.82 754.25 435.25C755.40 434.66 756.27 434.62 757.20 435.10C758.05 435.54 760.55 438.15 761.07 439.13C761.73 440.37 765.05 443.17 766.53 443.74C768.39 444.44 769.49 444.39 771.25 443.50C773.09 442.57 773.36 442.57 774.27 443.48C775.40 444.61 775.28 445.62 773.87 447.00C772.64 448.21 772.25 449.19 772.25 451.13C772.25 452.62 771.86 453.27 770.47 454.05C769.20 454.76 768.60 455.90 768.23 458.26C767.93 460.18 767.99 460.80 768.58 462.38C768.91 463.25 768.91 463.48 768.59 464.25C767.93 465.86 766.60 466.18 764.54 465.24C763.30 464.68 758.85 464.54 757.58 465.02C756.84 465.29 755.25 466.69 755.25 467.06C755.25 467.18 755.53 467.69 755.88 468.20C757.62 470.76 756.26 472.10 749.07 474.90C745.58 476.26 745.49 476.32 746.18 477.06C747.01 477.95 748.03 480.49 748.17 482.00C748.28 483.20 748.20 483.57 747.52 484.84C747.10 485.64 746.75 486.40 746.75 486.52C746.75 486.64 747.24 487.29 747.85 487.97C749.61 489.96 749.68 492.07 748.04 494.21C747.55 494.85 746.81 495.99 746.38 496.75C745.36 498.56 744.78 498.64 742.75 497.29C741.93 496.74 740.76 496.10 740.15 495.87L739.03 495.44L737.95 496.20L736.88 496.95L729.48 497.10C721.20 497.27 720.79 497.21 718.24 495.64C716.46 494.54 716.18 494.54 714.60 495.61C710.67 498.25 702.54 500.17 699.19 499.24C697.93 498.89 697.66 499.06 694.38 502.23C692.86 503.69 690.57 505.86 689.28 507.05C687.15 509.02 686.92 509.32 686.72 510.42C686.46 511.85 685.38 513.00 684.31 513.00C683.93 512.99 682.95 512.61 682.12 512.15Z"/></g><path fill="currentColor" fill-rule="evenodd" d="M284.38 844.48C296.77 843.13 307.58 839.52 318.25 833.16C324.80 829.26 336.20 819.11 336.57 816.86C336.69 816.08 337.07 815.60 337.85 815.23C338.78 814.78 340.86 811.22 341.24 809.43C341.69 807.36 341.22 805.69 339.79 804.27C338.72 803.20 338.05 802.88 331.50 800.27C327.58 798.71 322.44 796.61 320.08 795.61C314.59 793.27 313.64 793.00 311.02 793.01C308.29 793.01 307.15 793.51 305.42 795.42C299.43 802.03 295.03 805.33 289.00 807.70C282.73 810.17 272.99 811.31 268.25 810.13C267.36 809.90 265.73 809.50 264.62 809.22C256.65 807.23 248.98 802.20 243.88 795.63C240.72 791.54 239.12 788.02 237.63 781.79C237.22 780.08 237.21 779.93 237.60 779.54C237.99 779.16 241.99 779.12 290.70 779.00L343.38 778.88L345.28 777.94C347.60 776.81 349.44 774.92 350.29 772.81C350.86 771.41 350.87 771.17 350.84 764.00C350.81 756.02 350.34 751.56 348.89 745.48C347.55 739.83 343.24 729.04 341.64 727.32C341.28 726.94 340.89 726.27 340.77 725.83C339.92 722.75 332.37 713.46 326.46 708.20C319.21 701.76 306.26 694.38 301.00 693.71C300.66 693.66 300.32 693.56 300.25 693.48C300.18 693.40 299.17 693.04 298.00 692.68C283.00 688.04 263.75 688.32 247.93 693.42C226.79 700.24 209.62 715.40 200.99 734.88C195.04 748.31 193.01 759.63 194.00 773.93C195.05 789.16 200.97 804.54 210.24 816.12C216.42 823.85 221.82 828.72 229.49 833.49C236.12 837.60 242.14 840.20 250.00 842.33C259.66 844.95 272.62 845.76 284.38 844.48ZM665.38 844.26C676.17 843.19 683.20 841.19 692.25 836.61C702.24 831.56 710.32 824.85 716.84 816.19C720.93 810.76 721.46 807.27 718.66 804.29C717.72 803.29 717.37 803.11 711.34 800.41C708.75 799.25 705.16 797.60 703.38 796.75C695.32 792.92 695.33 792.92 693.00 792.90C690.25 792.87 689.19 793.45 686.80 796.32C681.98 802.08 677.57 805.32 671.15 807.81C666.47 809.63 665.11 809.85 658.62 809.86C653.15 809.87 652.75 809.83 650.37 809.19C640.66 806.58 633.62 801.45 628.79 793.43C625.77 788.44 623.29 780.15 624.56 779.33C624.73 779.22 646.87 779.07 673.75 779.00L722.62 778.88L723.99 778.30C726.66 777.16 728.31 775.53 729.29 773.04C729.81 771.73 729.86 771.14 729.95 765.12C730.11 754.71 729.27 748.54 726.45 739.38C723.63 730.21 717.78 719.54 712.48 713.88C707.27 708.32 703.78 705.26 699.12 702.17C686.31 693.69 668.58 689.51 652.25 691.14C641.21 692.23 633.35 694.37 624.62 698.63C615.99 702.86 610.35 706.89 604.12 713.28C587.72 730.11 580.39 753.30 583.50 778.50C584.29 784.92 585.82 791.63 587.63 796.62C588.13 798.00 588.66 799.46 588.81 799.88C588.95 800.29 590.06 802.56 591.26 804.92C600.76 823.62 615.98 836.33 635.62 842.01C643.92 844.41 655.19 845.26 665.38 844.26ZM497.75 843.13C506.35 842.02 514.91 838.40 521.43 833.13C522.79 832.02 528.65 826.18 530.06 824.53C531.57 822.74 531.75 823.15 531.75 828.47C531.75 837.07 533.09 840.30 537.40 842.03L538.88 842.62L551.38 842.62C562.84 842.62 563.99 842.59 565.28 842.16C568.27 841.18 570.42 838.62 570.98 835.38C571.35 833.27 571.36 645.31 570.99 643.05C570.25 638.52 567.09 635.23 562.75 634.50C560.05 634.04 538.69 634.30 537.23 634.80C533.16 636.21 530.80 638.56 529.73 642.25C529.46 643.15 529.41 649.45 529.48 674.25C529.55 705.81 529.46 711.25 528.85 711.25C528.67 711.25 527.14 709.86 525.45 708.15C517.14 699.79 506.89 694.52 495.75 692.90C491.37 692.26 486.29 691.94 483.12 692.11C460.08 693.34 440.19 704.84 427.67 724.17C426.27 726.33 423.00 732.08 423.00 732.38C423.00 732.44 422.56 733.42 422.03 734.56C416.68 746.00 414.30 763.38 416.25 776.88C416.99 782.04 417.39 784.10 418.39 788.12C422.52 804.54 432.49 819.45 446.26 829.77C456.13 837.17 468.51 842.02 481.00 843.36C485.19 843.81 493.36 843.70 497.75 843.13ZM397.46 842.26C400.35 841.29 402.24 839.64 403.47 837.03L404.12 835.62L404.12 739.00L404.12 642.38L403.54 641.00C402.26 637.98 400.04 635.87 397.15 634.93C394.89 634.20 373.49 633.95 370.68 634.62C366.09 635.72 363.43 638.38 362.42 642.88C362.06 644.46 362.05 651.34 362.28 715.25C362.42 754.09 362.62 797.01 362.71 810.62L362.89 835.38L363.46 836.79C364.05 838.29 365.81 840.50 366.40 840.50C366.59 840.50 366.99 840.77 367.28 841.11C368.70 842.74 371.53 842.99 387.00 842.87C395.29 842.80 395.98 842.76 397.46 842.26ZM823.25 842.15C827.29 840.82 829.45 838.13 830.02 833.71C830.13 832.80 830.20 825.26 830.16 816.96C830.12 808.66 830.18 801.54 830.29 801.12C830.55 800.17 832.58 798.02 839.00 791.94C844.27 786.94 844.94 786.40 845.59 786.65C845.80 786.73 847.13 788.37 848.55 790.31C849.96 792.24 852.93 796.25 855.14 799.22C857.34 802.19 860.04 805.90 861.14 807.46C862.23 809.02 865.52 813.57 868.44 817.58C871.37 821.59 875.35 827.07 877.30 829.75C884.79 840.09 884.63 839.90 887.26 841.10C888.01 841.44 889.36 841.84 890.25 841.98C892.14 842.29 911.41 842.35 911.59 842.05C911.73 841.83 913.70 841.86 915.62 842.10C916.31 842.19 918.79 842.17 921.12 842.05C924.68 841.87 925.58 841.74 926.62 841.28C929.27 840.10 930.36 838.37 930.37 835.38C930.38 833.36 930.10 832.56 928.93 831.10C928.71 830.84 927.27 828.94 925.72 826.88C924.16 824.81 921.69 821.58 920.21 819.69C918.74 817.80 916.38 814.71 914.98 812.82C913.57 810.92 911.78 808.53 911.00 807.50C910.22 806.47 907.22 802.48 904.33 798.62C901.45 794.77 896.74 788.49 893.86 784.65C888.04 776.90 887.10 775.63 883.92 771.27C882.71 769.61 881.33 767.84 880.86 767.34C880.39 766.84 880.00 766.30 880.00 766.15C880.00 765.99 879.44 765.18 878.77 764.34C876.59 761.65 875.50 759.95 875.50 759.23C875.50 758.54 877.31 756.32 881.73 751.62C882.63 750.66 885.07 748.02 887.14 745.75C889.22 743.48 893.45 738.86 896.55 735.47C900.31 731.37 902.25 729.08 902.36 728.58C902.48 728.04 902.74 727.76 903.37 727.54C903.94 727.33 905.31 726.03 907.67 723.43C909.57 721.34 914.44 716.28 918.50 712.18C926.22 704.38 926.29 704.28 927.52 700.77C928.58 697.77 927.57 695.46 924.47 693.83L923.12 693.12L905.25 693.12L887.38 693.12L885.69 693.71C883.35 694.51 881.55 695.93 878.62 699.24C877.25 700.80 875.34 702.95 874.38 704.02C869.66 709.27 860.69 719.28 859.61 720.50C858.94 721.26 857.37 723.00 856.12 724.38C854.87 725.75 853.08 727.77 852.13 728.88C849.94 731.43 848.04 733.57 843.38 738.75C841.31 741.04 837.88 744.91 835.75 747.34C831.45 752.26 830.98 752.55 830.74 750.50C830.67 749.88 830.65 726.03 830.71 697.50C830.78 659.02 830.74 645.14 830.52 643.75C829.83 639.25 827.19 636.08 823.10 634.84C820.82 634.14 798.67 634.16 796.29 634.86C792.92 635.86 790.51 638.18 789.33 641.58C788.89 642.82 788.88 646.90 788.88 739.25L788.88 835.62L789.58 837.12C790.75 839.65 792.73 841.31 795.70 842.27C797.82 842.97 821.10 842.86 823.25 842.15ZM1054.20 841.52C1057.88 841.33 1058.08 841.29 1059.70 840.47C1061.78 839.41 1063.45 837.35 1064.28 834.81C1065.37 831.49 1065.17 814.20 1064.01 811.18C1062.99 808.51 1061.20 806.73 1058.62 805.83C1057.46 805.42 1055.49 805.39 1028.38 805.43C996.76 805.48 992.43 805.39 992.30 804.69C992.20 804.19 994.32 801.41 998.81 796.16C1000.56 794.11 1002.92 791.30 1004.04 789.91C1005.17 788.51 1006.95 786.42 1008.00 785.25C1009.05 784.08 1010.51 782.39 1011.24 781.50C1011.97 780.61 1013.55 778.75 1014.75 777.38C1017.35 774.42 1025.32 765.07 1028.72 761.00C1030.04 759.42 1032.42 756.66 1034.00 754.87C1035.58 753.07 1038.96 749.19 1041.50 746.24C1044.04 743.29 1046.90 740.04 1047.84 739.00C1048.78 737.97 1050.92 735.49 1052.58 733.50C1054.25 731.51 1056.63 728.75 1057.88 727.38C1064.05 720.59 1064.59 719.28 1064.89 710.37C1065.15 702.73 1064.48 699.91 1061.67 696.84C1060.30 695.33 1057.76 693.93 1055.69 693.54C1054.07 693.23 951.08 692.96 949.47 693.26C945.18 694.06 942.31 696.66 941.05 700.88C940.58 702.44 940.33 715.14 940.70 718.23C941.15 721.91 943.07 724.74 946.18 726.28L947.38 726.88L977.62 727.00C994.26 727.07 1008.02 727.22 1008.19 727.33C1008.81 727.73 1008.43 728.31 1004.30 733.17C1001.99 735.90 998.82 739.70 997.24 741.62C995.67 743.55 993.03 746.70 991.38 748.63C989.73 750.56 986.74 754.09 984.75 756.48C982.76 758.87 978.54 763.89 975.38 767.63C969.45 774.65 960.08 785.85 954.38 792.74C952.59 794.90 950.11 797.89 948.88 799.38C947.64 800.87 945.50 803.40 944.12 804.98C940.56 809.10 940.08 809.75 939.14 811.80C937.64 815.09 937.50 816.11 937.50 824.02C937.50 831.65 937.70 833.21 939.03 835.81C940.21 838.13 942.92 840.39 945.70 841.39L947.38 841.99L998.88 841.85C1027.20 841.77 1052.10 841.62 1054.20 841.52ZM490.12 805.88C481.71 804.80 474.86 801.39 468.60 795.14C464.93 791.47 463.96 790.12 461.50 785.18C453.33 768.77 456.14 749.89 468.53 737.87C473.49 733.07 478.45 730.31 485.41 728.48C489.65 727.36 496.84 727.13 500.50 728.00C511.61 730.62 518.77 735.41 524.39 743.98C528.86 750.80 530.65 756.63 530.92 765.25C531.32 777.78 527.21 788.19 518.59 796.50C510.72 804.09 501.06 807.27 490.12 805.88ZM304.62 750.75C304.35 750.63 289.59 750.53 271.83 750.52C251.49 750.51 239.30 750.41 238.89 750.26C238.03 749.93 238.05 749.08 239.00 746.50C242.53 736.94 248.50 730.29 257.33 726.11C270.62 719.83 286.58 721.36 297.05 729.92C302.17 734.10 305.56 738.89 307.49 744.69C308.82 748.68 308.77 750.24 307.28 750.26C306.92 750.26 306.41 750.43 306.14 750.63C305.60 751.04 305.35 751.06 304.62 750.75ZM625.26 750.01C624.79 749.54 624.79 749.46 625.16 748.20C626.95 742.19 629.28 738.08 633.59 733.37C639.43 727.00 649.36 722.75 658.40 722.75C673.33 722.76 685.88 732.26 689.50 746.29C690.15 748.78 690.15 749.90 689.52 750.24C689.19 750.42 678.72 750.50 657.39 750.50C626.31 750.50 625.74 750.49 625.26 750.01Z"/><circle cx="752" cy="817.5" r="25.5" fill="#E3000F"/></symbol>
+  <symbol id="tri" viewBox="0 0 12 14"><path d="M1.6 .3C.9-.1 0 .4 0 1.2v11.6c0 .8.9 1.3 1.6.9l9.7-5.8c.7-.4.7-1.4 0-1.8L1.6.3Z"/></symbol>
+</svg>
+
+<!-- ═══ utility strip ═══ -->
+<div class="util">
+  <div class="wrap">
+    <span><b>Сенбі, 15 қараша</b></span>
+    <span>Астана <b>−7°</b> <span class="wx-extra">· Алматы <b>+3°</b> · Шымкент <b>+9°</b></span></span>
+    <span class="rates"><span>USD <b>444,30</b> <i class="up">▲</i></span><span>EUR <b>490,91</b> <i class="up">▲</i></span><span>RUB <b>5,41</b> <i class="dn">▼</i></span></span>
+    <span class="end lang"><a href="#" aria-current="true" lang="kk">ҚАЗ</a><a href="#" lang="ru">РУС</a><a href="#" lang="en">ENG</a></span>
+  </div>
+</div>
+
+<!-- ═══ masthead ═══ -->
+<header class="mast">
+  <div class="wrap">
+    <div class="left">
+      <button class="tbtn" data-drawer-open aria-controls="drawer" aria-expanded="false"><svg class="i"><use href="#i-menu"/></svg><span>Мәзір</span></button>
+      <button class="tbtn search-btn" data-search-open aria-controls="search" aria-expanded="false"><svg class="i"><use href="#i-search"/></svg><span>Іздеу</span></button>
+    </div>
+    <a href="#" class="logo" aria-label="elde.kz, басты бет"><svg class="lg" role="img" aria-hidden="true"><use href="#elde-logo"/></svg></a>
+    <div class="right">
+      <button class="ibtn theme" data-theme-toggle aria-label="Түнгі режим"><svg class="i moon"><use href="#i-moon"/></svg><svg class="i sun"><use href="#i-sun"/></svg></button>
+      <a href="#" class="tbtn"><svg class="i"><use href="#i-user"/></svg><span>Кіру</span></a>
+      <a href="#digest" class="btn-sub">Жазылу</a>
+      <button class="ibtn m-search" data-search-open aria-label="Іздеу" aria-controls="search" aria-expanded="false"><svg class="i"><use href="#i-search"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<nav class="secnav" aria-label="Бөлімдер">
+  <div class="wrap">
+    <a href="#" class="mini" aria-label="elde.kz, басты бет"><svg class="lg" aria-hidden="true"><use href="#elde-logo"/></svg></a>
+    <ul>
+      <li><a href="#" aria-current="page">Басты</a></li>
+      <li><a href="#sec-pol">Саясат</a></li>
+      <li><a href="#sec-eco">Экономика</a></li>
+      <li><a href="#">Қоғам</a></li>
+      <li><a href="#sec-reg">Аймақтар</a></li>
+      <li><a href="#">Әлем</a></li>
+      <li><a href="#sec-three">Спорт</a></li>
+      <li><a href="#sec-three">Мәдениет</a></li>
+      <li><a href="#sec-three">Технология</a></li>
+      <li><a href="#sec-video">Видео</a></li>
+      <li><a href="#sec-op">Пікір</a></li>
+    </ul>
+    <button class="ibtn search-mini" data-search-open aria-label="Іздеу" aria-controls="search" aria-expanded="false"><svg class="i"><use href="#i-search"/></svg></button>
+  </div>
+</nav>
+
+<div class="breaking" role="region" aria-label="Шұғыл жаңалық" data-breaking>
+  <div class="wrap">
+    <span class="tag"><svg aria-hidden="true"><use href="#tri"/></svg>ШҰҒЫЛ</span>
+    <time datetime="2026-11-15T18:42">18:42</time>
+    <a href="#">Алматы облысында 16 қарашаға дауылды ескерту жарияланды: тау жолдары уақытша жабылады</a>
+    <button class="ibtn" aria-label="Хабарламаны жабу" data-breaking-close><svg class="i"><use href="#i-x"/></svg></button>
+  </div>
+</div>
+
+<div class="ad" aria-label="Жарнама"><div class="slot">Жарнама</div></div>
+
+<main id="content">
+<div class="wrap">
+
+  <!-- ═══ top: lead + latest ═══ -->
+  <section class="top" aria-label="Басты жаңалықтар">
+    <article class="lead story">
+      <div class="txt">
+        <span class="kick">Қоғам · Басты тақырып</span>
+        <h1><a class="go" href="#">Іле Алатауында қар көшкіні қаупі: туристерге тауға шықпау ұсынылды</a></h1>
+        <p>Құтқарушылар демалыс күндері биік таулы аймақтарға баратын жолдарды бақылауды күшейтті. Шатқалдарға баратын автобустар уақытша тоқтатылды.</p>
+        <div class="meta"><span><time datetime="2026-11-15T18:05">18:05</time></span><span>86 пікір</span></div>
+        <div class="related">
+          <a href="#">Тауға шыққанда не алу керек: құтқарушылардың 7 кеңесі</a>
+          <a href="#">Шымбұлақ курорты жұмыс кестесін өзгертті</a>
+          <a href="#">Синоптиктер: аптаның соңына дейін жауын-шашын болады</a>
+        </div>
+      </div>
+      <div>
+        <div class="ph"><img src="img/h3.jpg" alt="Қарлы тау шыңында тұрған саяхатшы"></div>
+        <p class="cap">Іле Алатауы, 14 қараша. Фото: elde.kz</p>
+      </div>
+    </article>
+
+    <div class="under ruled">
+      <article class="story">
+        <div class="ph"><img src="img/n12.jpg" alt="Пісіп тұрған бидай алқабы"></div>
+        <span class="kick">Экономика</span>
+        <h3><a class="go" href="#">Астық экспорты соңғы бес жылдағы ең жоғары деңгейге жақындады</a></h3>
+        <p>Қазан айында 1,2 млн тонна астық сыртқа шығарылды.</p>
+        <div class="meta"><span>16:40</span></div>
+      </article>
+      <article class="story">
+        <div class="ph"><img src="img/h1.jpg" alt="Ноутбукпен жұмыс істеп отырған команда"></div>
+        <span class="kick">Технология</span>
+        <h3><a class="go" href="#">Астанада IT-стартаптарға арналған жаңа хаб ашылады</a></h3>
+        <p>Алғашқы 40 команда алты ай тегін жұмыс істейді.</p>
+        <div class="meta"><span>15:12</span></div>
+      </article>
+      <article class="story">
+        <div class="ph"><img src="img/n6.jpg" alt="Сыныптағы оқушылар"></div>
+        <span class="kick">Білім</span>
+        <h3><a class="go" href="#">Ауыл мектептеріне 2 мың жаңа мұғалім келеді</a></h3>
+        <p>Жас мамандарға тұрғын үй мен көтерме жәрдемақы беріледі.</p>
+        <div class="meta"><span>12:02</span></div>
+      </article>
+    </div>
+
+    <div class="textrow ruled">
+      <article class="story"><span class="kick">Қаржы</span><h3><a class="go" href="#">Ұлттық банк базалық мөлшерлемені 15,25% деңгейінде сақтады</a></h3><div class="meta"><span>14:00</span></div></article>
+      <article class="story"><span class="kick">Алматы</span><h3><a class="go" href="#">Метроның үшінші желісінің жобасы бекітілді</a></h3><div class="meta"><span>13:24</span></div></article>
+      <article class="story"><span class="kick">Бизнес</span><h3><a class="go" href="#">Жаңа Салық кодексі: жеке кәсіпкерлер үшін не өзгереді</a></h3><div class="meta"><span>12:47</span></div></article>
+      <article class="story"><span class="kick">Әлем</span><h3><a class="go" href="#">Қазақстан мен Өзбекстан шекарада жаңа өткізу бекетін ашты</a></h3><div class="meta"><span>11:30</span></div></article>
+    </div>
+
+    <aside class="feed" aria-label="Жаңалықтар таспасы">
+      <div class="tabs" role="tablist">
+        <button role="tab" id="t-new" aria-selected="true" aria-controls="p-new">Соңғы</button>
+        <button role="tab" id="t-pop" aria-selected="false" aria-controls="p-pop" tabindex="-1">Ең көп оқылған</button>
+      </div>
+      <ol id="p-new" role="tabpanel" aria-labelledby="t-new">
+        <li class="hot"><a href="#"><time>18:42</time><span class="t"><span class="flag">ШҰҒЫЛ</span>Алматы облысында дауылды ескерту жарияланды</span></a></li>
+        <li><a href="#"><time>18:20</time><span class="t">Ұлттық құрама жаттығу жиынына аттанды</span></a></li>
+        <li><a href="#"><time>17:55</time><span class="t">Теңге бағамы: апта қалай аяқталды</span></a></li>
+        <li><a href="#"><time>17:31</time><span class="t">Шымкентте 300 орындық жаңа емхана ашылды</span></a></li>
+        <li><a href="#"><time>17:08</time><span class="t">Елордада жылу беру маусымы толық басталды</span></a></li>
+        <li><a href="#"><time>16:44</time><span class="t">Қарағандыда ауа сапасы нашарлады: дәрігерлер кеңесі</span></a></li>
+        <li><a href="#"><time>16:12</time><span class="t">Мектептердегі қысқы демалыс күндері белгілі болды</span></a></li>
+        <li><a href="#"><time>15:50</time><span class="t">Ақтөбеде 40 шақырым жол мерзімінен бұрын жөнделді</span></a></li>
+        <li><a href="#"><time>15:21</time><span class="t">Ұлттық кітапхана 100 сирек кітапты цифрландырды</span></a></li>
+        <li><a href="#"><time>14:58</time><span class="t">eGov қосымшасында жүргізуші куәлігін ауыстыру қызметі пайда болды</span></a></li>
+      </ol>
+      <ol id="p-pop" role="tabpanel" aria-labelledby="t-pop" hidden>
+        <li><a href="#"><span class="n">1</span><span class="t">Іле Алатауында қар көшкіні қаупі: туристерге тауға шықпау ұсынылды<span class="v">12,4 мың оқылды</span></span></a></li>
+        <li><a href="#"><span class="n">2</span><span class="t">Жаңа Салық кодексі: жеке кәсіпкерлер үшін не өзгереді<span class="v">9,8 мың</span></span></a></li>
+        <li><a href="#"><span class="n">3</span><span class="t">Депозит пе, облигация ма: жинақты қайда сақтаған тиімді<span class="v">7,1 мың</span></span></a></li>
+        <li><a href="#"><span class="n">4</span><span class="t">Мектептердегі қысқы демалыс күндері белгілі болды<span class="v">6,6 мың</span></span></a></li>
+        <li><a href="#"><span class="n">5</span><span class="t">Метроның үшінші желісінің жобасы бекітілді<span class="v">5,9 мың</span></span></a></li>
+        <li><a href="#"><span class="n">6</span><span class="t">Ауыл мектептеріне 2 мың жаңа мұғалім келеді<span class="v">4,7 мың</span></span></a></li>
+        <li><a href="#"><span class="n">7</span><span class="t">Көлсай көлдері: қыстағы ертегі<span class="v">4,2 мың</span></span></a></li>
+      </ol>
+      <a href="#" class="more">Барлық жаңалықтар <svg class="i"><use href="#i-arrow"/></svg></a>
+    </aside>
+  </section>
+
+  <!-- ═══ politics | economy ═══ -->
+  <div class="pair">
+    <section class="sec" id="sec-pol" aria-labelledby="h-pol">
+      <div class="sec-head"><h2 id="h-pol">Саясат</h2><a href="#" class="all">Барлығы <svg class="i"><use href="#i-arrow"/></svg></a></div>
+      <article class="story feature">
+        <div class="ph"><img src="img/m6.jpg" alt="Жиналыс өткізіп жатқан адамдар" loading="lazy"></div>
+        <div class="story" style="position:static">
+          <span class="kick">Парламент</span>
+          <h3><a class="go" href="#">Мәжіліс жергілікті бюджеттерді ашық жариялау туралы түзетулерді мақұлдады</a></h3>
+          <p>Әкімдіктер шығыстарды ай сайын жариялауға міндетті болады.</p>
+          <div class="meta"><span>16:30</span></div>
+        </div>
+      </article>
+      <ul class="tlist">
+        <li><article class="story"><h3><a class="go" href="#">Сенат «Жергілікті өзін-өзі басқару туралы» заңды қабылдады</a></h3><div class="meta"><span>15:02</span></div></article></li>
+        <li><article class="story"><h3><a class="go" href="#">Ұлттық құрылтайдың кезекті отырысы Түркістанда өтеді</a></h3><div class="meta"><span>13:40</span></div></article></li>
+        <li><article class="story"><h3><a class="go" href="#">Сыртқы істер министрі Брюссельде ЕО өкілдерімен кездесті</a></h3><div class="meta"><span>11:15</span></div></article></li>
+      </ul>
+    </section>
+    <section class="sec" id="sec-eco" aria-labelledby="h-eco">
+      <div class="sec-head"><h2 id="h-eco">Экономика</h2><a href="#" class="all">Барлығы <svg class="i"><use href="#i-arrow"/></svg></a></div>
+      <article class="story feature">
+        <div class="ph"><img src="img/m7.jpg" alt="Әйнекпен қапталған биік ғимараттар" loading="lazy"></div>
+        <div class="story" style="position:static">
+          <span class="kick">Бизнес</span>
+          <h3><a class="go" href="#">Шағын бизнеске арналған салық есептілігі жеңілдейді</a></h3>
+          <p>Декларация нысандары жетіден екіге дейін қысқарады.</p>
+          <div class="meta"><span>15:48</span></div>
+        </div>
+      </article>
+      <ul class="tlist">
+        <li><article class="story"><h3><a class="go" href="#">Депозит пе, облигация ма: жинақты қайда сақтаған тиімді</a></h3><div class="meta"><span>14:31</span></div></article></li>
+        <li><article class="story"><h3><a class="go" href="#">Теңге бағамы: апта қалай аяқталды</a></h3><div class="meta"><span>13:05</span></div></article></li>
+        <li><article class="story"><h3><a class="go" href="#">Мұнай өндіру жоспары 2027 жылға дейін сақталады</a></h3><div class="meta"><span>10:20</span></div></article></li>
+      </ul>
+    </section>
+  </div>
+</div>
+
+<!-- ═══ video band ═══ -->
+<div class="vband">
+  <div class="wrap">
+    <section class="sec" id="sec-video" aria-labelledby="h-video">
+      <div class="sec-head"><h2 id="h-video">Видео</h2><a href="#" class="all">Барлық видео <svg class="i"><use href="#i-arrow"/></svg></a></div>
+      <div class="vgrid">
+        <article class="story big">
+          <div class="ph vph"><img src="img/m3.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"><span class="pb"><svg><use href="#tri"/></svg></span><span class="d">4:12</span></span></div>
+          <span class="kick">Саяхат</span>
+          <h3><a class="go" href="#">Көлсай көлдері: қыстағы ертегі</a></h3>
+          <div class="meta"><span>Бүгін</span><span>18 мың көрілді</span></div>
+        </article>
+        <div class="vlist">
+          <article class="story"><div class="ph vph"><img src="img/m8.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"><span class="pb"><svg><use href="#tri"/></svg></span><span class="d">12:40</span></span></div><div><span class="kick">Жол</span><h3><a class="go" href="#">Алматыдан Нарынқолға дейін: тау жолымен бір күн</a></h3></div></article>
+          <article class="story"><div class="ph vph"><img src="img/m4.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"><span class="pb"><svg><use href="#tri"/></svg></span><span class="d">8:05</span></span></div><div><span class="kick">Ауыл</span><h3><a class="go" href="#">Жайлаудан қыстауға: малшының бір күні</a></h3></div></article>
+          <article class="story"><div class="ph vph"><img src="img/m11.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"><span class="pb"><svg><use href="#tri"/></svg></span><span class="d">3:27</span></span></div><div><span class="kick">Туризм</span><h3><a class="go" href="#">Шымбұлақтағы аспалы жол: 30 минуттық сапар</a></h3></div></article>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="wrap">
+  <!-- ═══ regions with the map from the logo ═══ -->
+  <section class="sec" id="sec-reg" aria-labelledby="h-reg">
+    <div class="sec-head"><h2 id="h-reg">Аймақтар</h2><a href="#" class="all">Барлығы <svg class="i"><use href="#i-arrow"/></svg></a></div>
+    <div class="regions">
+      <div>
+        <div class="map">
+          <div class="field">
+          <svg class="kz" viewBox="576.8 401.2 200.6 113.8" aria-hidden="true"><path fill-rule="evenodd" d="M682.12 512.15C681.30 511.69 680.18 511.23 679.63 511.13C678.28 510.89 674.16 506.69 673.74 505.12C671.85 498.14 670.69 495.85 668.23 494.26C666.41 493.08 666.09 493.03 659.61 492.91C652.82 492.78 652.75 492.74 649.37 487.62C648.38 486.11 647.12 484.42 646.58 483.86C644.62 481.84 640.70 480.25 637.69 480.25C634.40 480.25 627.75 481.70 627.05 482.58C626.92 482.74 626.68 485.69 626.53 489.12C626.37 492.56 626.15 495.99 626.02 496.75C625.90 497.51 625.66 499.48 625.50 501.12C625.18 504.35 624.83 505.25 623.91 505.25C623.21 505.25 619.68 503.07 616.80 500.87C615.32 499.73 614.23 499.12 613.03 498.74L611.34 498.21L608.98 499.23C607.69 499.80 605.92 500.62 605.05 501.06C603.23 501.99 602.95 501.91 602.04 500.28C601.72 499.71 600.94 498.84 600.30 498.36C599.66 497.87 598.72 496.81 598.21 496.00C597.60 495.03 596.95 494.36 596.33 494.04C594.97 493.34 594.39 492.60 593.75 490.78C593.44 489.90 592.99 488.83 592.74 488.40C591.95 487.07 590.00 481.99 590.00 481.29C590.01 480.60 593.21 477.00 593.83 477.00C594.98 476.99 596.24 476.32 597.54 475.00C598.89 473.63 600.55 472.75 601.77 472.75C602.00 472.75 602.46 472.54 602.78 472.28C603.29 471.87 603.32 471.73 603.06 471.17C602.66 470.29 600.49 469.10 598.37 468.60C596.72 468.21 596.55 468.21 595.79 468.60C595.34 468.84 594.91 469.19 594.83 469.40C594.53 470.18 593.35 470.51 591.45 470.36C589.17 470.18 588.84 469.90 588.70 468.03C588.62 466.87 588.36 466.18 587.39 464.48C585.99 462.07 585.68 461.75 584.69 461.75C583.68 461.75 583.29 461.49 581.40 459.60C578.83 457.03 578.77 456.72 580.16 453.03C580.96 450.94 581.09 450.27 581.19 447.88C581.32 444.96 581.61 444.02 582.59 443.38C582.91 443.17 583.53 442.49 583.97 441.87C585.54 439.69 586.47 439.85 587.76 442.52C589.16 445.42 590.25 444.69 590.25 440.84C590.25 438.74 590.31 438.47 590.88 437.78C591.76 436.74 598.37 431.80 599.77 431.15C600.39 430.85 601.46 430.26 602.14 429.82C603.85 428.73 604.51 428.61 605.98 429.14C607.15 429.56 607.26 429.56 608.36 429.14C609.72 428.63 610.41 428.74 611.85 429.73C612.41 430.12 613.67 430.84 614.65 431.33C615.93 431.97 617.17 432.93 619.10 434.77L621.77 437.33L622.59 436.54C623.57 435.58 624.36 435.54 625.50 436.38C626.59 437.18 626.60 437.18 628.10 436.02C629.59 434.87 631.87 433.76 632.73 433.75C633.06 433.75 633.82 434.03 634.41 434.38C635.38 434.95 635.66 435.00 637.11 434.85C638.92 434.66 639.08 434.73 641.11 436.48C642.25 437.48 642.32 437.50 644.15 437.50C645.57 437.50 646.27 437.37 647.07 436.96C647.68 436.65 648.66 436.41 649.43 436.38C650.80 436.34 651.60 435.87 651.89 434.96C652.10 434.30 651.70 433.89 649.73 432.74C648.37 431.94 647.89 431.49 647.27 430.41C646.24 428.61 646.29 428.24 647.74 426.64C648.46 425.85 649.09 424.86 649.24 424.29C649.60 422.95 650.30 422.13 651.51 421.65L652.53 421.24L652.02 420.59C651.44 419.86 651.37 419.13 651.76 418.10C651.98 417.53 651.91 417.27 651.36 416.44C649.99 414.36 651.11 413.51 655.62 413.23C657.99 413.08 659.39 412.83 662.25 412.02C664.24 411.45 667.06 410.71 668.50 410.36C675.52 408.67 683.74 406.14 690.07 403.73L691.51 403.18L693.82 403.74C698.07 404.78 698.75 405.28 698.75 407.30C698.75 407.90 698.93 408.64 699.14 408.95C699.86 409.97 700.03 411.02 699.62 411.84C699.17 412.73 699.27 412.89 700.02 412.49C700.84 412.05 702.79 412.13 703.77 412.64C704.24 412.88 705.85 413.51 707.35 414.03C710.38 415.09 711.12 415.63 711.37 416.92C711.53 417.78 711.56 417.80 712.45 417.64C713.82 417.39 720.26 414.12 723.17 412.19C725.80 410.44 726.87 410.12 727.51 410.89C727.99 411.47 727.90 412.68 727.33 413.31C726.43 414.31 726.46 414.41 728.41 416.41C735.44 423.60 740.21 429.81 741.03 432.86C741.72 435.42 742.29 435.90 743.86 435.26C745.38 434.64 745.68 434.67 747.18 435.60C748.01 436.11 748.96 436.50 749.38 436.50C750.50 436.49 753.14 435.82 754.25 435.25C755.40 434.66 756.27 434.62 757.20 435.10C758.05 435.54 760.55 438.15 761.07 439.13C761.73 440.37 765.05 443.17 766.53 443.74C768.39 444.44 769.49 444.39 771.25 443.50C773.09 442.57 773.36 442.57 774.27 443.48C775.40 444.61 775.28 445.62 773.87 447.00C772.64 448.21 772.25 449.19 772.25 451.13C772.25 452.62 771.86 453.27 770.47 454.05C769.20 454.76 768.60 455.90 768.23 458.26C767.93 460.18 767.99 460.80 768.58 462.38C768.91 463.25 768.91 463.48 768.59 464.25C767.93 465.86 766.60 466.18 764.54 465.24C763.30 464.68 758.85 464.54 757.58 465.02C756.84 465.29 755.25 466.69 755.25 467.06C755.25 467.18 755.53 467.69 755.88 468.20C757.62 470.76 756.26 472.10 749.07 474.90C745.58 476.26 745.49 476.32 746.18 477.06C747.01 477.95 748.03 480.49 748.17 482.00C748.28 483.20 748.20 483.57 747.52 484.84C747.10 485.64 746.75 486.40 746.75 486.52C746.75 486.64 747.24 487.29 747.85 487.97C749.61 489.96 749.68 492.07 748.04 494.21C747.55 494.85 746.81 495.99 746.38 496.75C745.36 498.56 744.78 498.64 742.75 497.29C741.93 496.74 740.76 496.10 740.15 495.87L739.03 495.44L737.95 496.20L736.88 496.95L729.48 497.10C721.20 497.27 720.79 497.21 718.24 495.64C716.46 494.54 716.18 494.54 714.60 495.61C710.67 498.25 702.54 500.17 699.19 499.24C697.93 498.89 697.66 499.06 694.38 502.23C692.86 503.69 690.57 505.86 689.28 507.05C687.15 509.02 686.92 509.32 686.72 510.42C686.46 511.85 685.38 513.00 684.31 513.00C683.93 512.99 682.95 512.61 682.12 512.15Z"/></svg>
+          <button class="pin" style="left:60.8%;top:29.7%" data-city="astana" data-name="Астана" aria-pressed="false" aria-label="Астана: 2 жаңалық"><span class="dot"></span><span class="nm">Астана</span><span class="c">2</span></button>
+          <button class="pin" style="left:73.9%;top:80.9%" data-city="almaty" data-name="Алматы" aria-pressed="false" aria-label="Алматы: 1 жаңалық"><span class="dot"></span><span class="nm">Алматы</span><span class="c">1</span></button>
+          <button class="pin l" style="left:56.4%;top:86.9%" data-city="shymkent" data-name="Шымкент" aria-pressed="false" aria-label="Шымкент: 1 жаңалық"><span class="dot"></span><span class="nm">Шымкент</span><span class="c">1</span></button>
+          <button class="pin l" style="left:53.2%;top:80.5%" data-city="turkestan" data-name="Түркістан" aria-pressed="false" aria-label="Түркістан: 1 жаңалық"><span class="dot"></span><span class="nm">Түркістан</span><span class="c">1</span></button>
+          <button class="pin" style="left:64.8%;top:38.4%" data-city="karaganda" data-name="Қарағанды" aria-pressed="false" aria-label="Қарағанды: 1 жаңалық"><span class="dot"></span><span class="nm">Қарағанды</span><span class="c">1</span></button>
+          <button class="pin" style="left:74.0%;top:22.2%" data-city="pavlodar" data-name="Павлодар" aria-pressed="false" aria-label="Павлодар: 1 жаңалық"><span class="dot"></span><span class="nm">Павлодар</span><span class="c">1</span></button>
+          <button class="pin" style="left:87.6%;top:37.4%" data-city="oskemen" data-name="Өскемен" aria-pressed="false" aria-label="Өскемен: 1 жаңалық"><span class="dot"></span><span class="nm">Өскемен</span><span class="c">1</span></button>
+          <button class="pin" style="left:26.7%;top:35.2%" data-city="aktobe" data-name="Ақтөбе" aria-pressed="false" aria-label="Ақтөбе: 1 жаңалық"><span class="dot"></span><span class="nm">Ақтөбе</span><span class="c">1</span></button>
+          <button class="pin" style="left:42.0%;top:16.3%" data-city="kostanay" data-name="Қостанай" aria-pressed="false" aria-label="Қостанай: 1 жаңалық"><span class="dot"></span><span class="nm">Қостанай</span><span class="c">1</span></button>
+          <button class="pin" style="left:14.0%;top:55.9%" data-city="atyrau" data-name="Атырау" aria-pressed="false" aria-label="Атырау: 1 жаңалық"><span class="dot"></span><span class="nm">Атырау</span><span class="c">1</span></button>
+          <button class="pin" style="left:12.3%;top:78.3%" data-city="aktau" data-name="Ақтау" aria-pressed="false" aria-label="Ақтау: 1 жаңалық"><span class="dot"></span><span class="nm">Ақтау</span><span class="c">1</span></button>
+          </div>
+        </div>
+        <p class="hint">Қаланы таңдаңыз: тізімде сол өңірдің жаңалықтары қалады.</p>
+      </div>
+      <div>
+        <div class="chips" role="group" aria-label="Өңір бойынша сүзгі">
+          <button aria-pressed="true" data-city="all">Барлығы</button>
+          <button aria-pressed="false" data-city="astana" data-name="Астана">Астана</button>
+          <button aria-pressed="false" data-city="almaty" data-name="Алматы">Алматы</button>
+          <button aria-pressed="false" data-city="shymkent" data-name="Шымкент">Шымкент</button>
+          <button aria-pressed="false" data-city="turkestan" data-name="Түркістан">Түркістан</button>
+          <button aria-pressed="false" data-city="karaganda" data-name="Қарағанды">Қарағанды</button>
+          <button aria-pressed="false" data-city="pavlodar" data-name="Павлодар">Павлодар</button>
+          <button aria-pressed="false" data-city="oskemen" data-name="Өскемен">Өскемен</button>
+          <button aria-pressed="false" data-city="aktobe" data-name="Ақтөбе">Ақтөбе</button>
+          <button aria-pressed="false" data-city="kostanay" data-name="Қостанай">Қостанай</button>
+          <button aria-pressed="false" data-city="atyrau" data-name="Атырау">Атырау</button>
+          <button aria-pressed="false" data-city="aktau" data-name="Ақтау">Ақтау</button>
+        </div>
+        <ul class="rlist" data-rlist>
+          <li data-city="almaty"><article class="story"><div class="txt"><span class="place"><svg class="i"><use href="#i-pin"/></svg>Алматы</span><h3><a class="go" href="#">Алматыда 12 аялдама жылытылатын болды</a></h3><div class="meta"><span>17:02</span></div></div><div class="ph"><img src="img/n13.jpg" alt="Қала көшесі" loading="lazy"></div></article></li>
+          <li data-city="astana"><article class="story"><div class="txt"><span class="place"><svg class="i"><use href="#i-pin"/></svg>Астана</span><h3><a class="go" href="#">Елордада жаңа жастар орталығы ашылды</a></h3><div class="meta"><span>16:25</span></div></div><div class="ph"><img src="img/m12.jpg" alt="Күн батқанда құшақтасып тұрған жастар" loading="lazy"></div></article></li>
+          <li data-city="shymkent"><article class="story"><div class="txt"><span class="place"><svg class="i"><use href="#i-pin"/></svg>Шымкент</span><h3><a class="go" href="#">Шымкентте 5 жаңа балабақша ашылды</a></h3><div class="meta"><span>15:40</span></div></div><div class="ph"><img src="img/n11.jpg" alt="Күліп тұрған балалар" loading="lazy"></div></article></li>
+          <li data-city="karaganda"><article class="story"><div class="txt"><span class="place"><svg class="i"><use href="#i-pin"/></svg>Қарағанды</span><h3><a class="go" href="#">Қарағандыда ауа сапасын бақылайтын 20 датчик орнатылды</a></h3><div class="meta"><span>14:18</span></div></div><div class="ph"><img src="img/m2.jpg" alt="Тұманды аңғар" loading="lazy"></div></article></li>
+          <li data-city="astana"><article class="story no-img"><div class="txt"><span class="place"><svg class="i"><use href="#i-pin"/></svg>Астана</span><h3><a class="go" href="#">Әкімдік қызметтерінің 90%-ы онлайн режимге көшті</a></h3><div class="meta"><span>13:50</span></div></div></article></li>
+          <li data-city="aktobe"><article class="story"><div class="txt"><span class="place"><svg class="i"><use href="#i-pin"/></svg>Ақтөбе</span><h3><a class="go" href="#">Ақтөбе облысында орман екпелері екі есе көбейді</a></h3><div class="meta"><span>12:31</span></div></div><div class="ph"><img src="img/n1.jpg" alt="Орман" loading="lazy"></div></article></li>
+          <li data-city="pavlodar"><article class="story no-img"><div class="txt"><span class="place"><svg class="i"><use href="#i-pin"/></svg>Павлодар</span><h3><a class="go" href="#">Павлодарда жастарға арналған тегін IT-курстар басталды</a></h3><div class="meta"><span>11:05</span></div></div></article></li>
+          <li data-city="turkestan"><article class="story"><div class="txt"><span class="place"><svg class="i"><use href="#i-pin"/></svg>Түркістан</span><h3><a class="go" href="#">Түркістанда халықаралық музыка фестивалі өтті</a></h3><div class="meta"><span>10:12</span></div></div><div class="ph"><img src="img/n9.jpg" alt="Концерт сахнасы" loading="lazy"></div></article></li>
+          <li data-city="atyrau"><article class="story no-img"><div class="txt"><span class="place"><svg class="i"><use href="#i-pin"/></svg>Атырау</span><h3><a class="go" href="#">Атырауда Жайық жағалауын нығайту жұмысы аяқталды</a></h3><div class="meta"><span>09:40</span></div></div></article></li>
+          <li data-city="oskemen"><article class="story no-img"><div class="txt"><span class="place"><svg class="i"><use href="#i-pin"/></svg>Өскемен</span><h3><a class="go" href="#">Өскеменде жаңа жылу қазандығы іске қосылды</a></h3><div class="meta"><span>09:05</span></div></div></article></li>
+          <li data-city="kostanay"><article class="story no-img"><div class="txt"><span class="place"><svg class="i"><use href="#i-pin"/></svg>Қостанай</span><h3><a class="go" href="#">Қостанай фермерлері күздік бидай егісін аяқтады</a></h3><div class="meta"><span>08:30</span></div></div></article></li>
+          <li data-city="aktau"><article class="story no-img"><div class="txt"><span class="place"><svg class="i"><use href="#i-pin"/></svg>Ақтау</span><h3><a class="go" href="#">Ақтауда теңіз жағалауына жаңа серуен жолы салынады</a></h3><div class="meta"><span>Кеше</span></div></div></article></li>
+        </ul>
+        <p class="rcount" data-rcount aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="ad bordered" aria-label="Жарнама"><div class="slot">Жарнама</div></div>
+
+<div class="wrap">
+  <!-- ═══ sport · culture · tech ═══ -->
+  <div class="three ruled" id="sec-three">
+    <section class="sec col" aria-labelledby="h-sport">
+      <div class="sec-head"><h2 id="h-sport">Спорт</h2><a href="#" class="all">Барлығы <svg class="i"><use href="#i-arrow"/></svg></a></div>
+      <article class="story"><div class="ph"><img src="img/n3.jpg" alt="Велошабандоздар жарысы" loading="lazy"></div><span class="kick">Велоспорт</span><h3><a class="go" href="#">Қазақстандық команда маусымды үш жүлдемен аяқтады</a></h3><div class="meta"><span>14:30</span></div></article>
+      <ul class="tlist">
+        <li><article class="story"><h3><a class="go" href="#">Ұлттық құрама жаттығу жиынына 26 ойыншы шақырылды</a></h3></article></li>
+        <li><article class="story"><h3><a class="go" href="#">Бокс: қазақстандық чемпион атағын үшінші рет қорғады</a></h3></article></li>
+      </ul>
+    </section>
+    <section class="sec col" aria-labelledby="h-cult">
+      <div class="sec-head"><h2 id="h-cult">Мәдениет</h2><a href="#" class="all">Барлығы <svg class="i"><use href="#i-arrow"/></svg></a></div>
+      <article class="story"><div class="ph"><img src="img/n4.jpg" alt="Бояу мен қылқаламдар" loading="lazy"></div><span class="kick">Көрме</span><h3><a class="go" href="#">Жас суретшілер көрмесі: 40 автор, бір тақырып — дала</a></h3><div class="meta"><span>13:15</span></div></article>
+      <ul class="tlist">
+        <li><article class="story"><h3><a class="go" href="#">Ұлттық кітапхана 100 сирек кітапты цифрландырды</a></h3></article></li>
+        <li><article class="story"><h3><a class="go" href="#">Қазақ драма театры Еуропа сахналарына гастрольге шығады</a></h3></article></li>
+      </ul>
+    </section>
+    <section class="sec col" aria-labelledby="h-tech">
+      <div class="sec-head"><h2 id="h-tech">Технология</h2><a href="#" class="all">Барлығы <svg class="i"><use href="#i-arrow"/></svg></a></div>
+      <article class="story"><div class="ph"><img src="img/n5.jpg" alt="Микросхема" loading="lazy"></div><span class="kick">Стартап</span><h3><a class="go" href="#">Отандық стартап қазақ тіліне арналған дауыс көмекшісін шығарды</a></h3><div class="meta"><span>17:12</span></div></article>
+      <ul class="tlist">
+        <li><article class="story"><h3><a class="go" href="#">eGov қосымшасында жүргізуші куәлігін ауыстыру қызметі пайда болды</a></h3></article></li>
+        <li><article class="story"><h3><a class="go" href="#">Ауылдарға жоғары жылдамдықты интернет жеткізу жалғасып жатыр</a></h3></article></li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- ═══ opinion ═══ -->
+  <section class="sec" id="sec-op" aria-labelledby="h-op">
+    <div class="sec-head"><h2 id="h-op">Пікір</h2><a href="#" class="all">Барлық авторлар <svg class="i"><use href="#i-arrow"/></svg></a></div>
+    <div class="ops ruled">
+      <article class="op story">
+        <blockquote><a class="go" href="#">Ауыл мектебіне мұғалімді жалақы емес, баспана ұстап қалады</a></blockquote>
+        <div class="who"><span class="ava" aria-hidden="true">ӘН</span><span><b>Әсем Нұрланқызы</b><span>білім саласының сарапшысы</span></span></div>
+      </article>
+      <article class="op story">
+        <blockquote><a class="go" href="#">Теңгенің тұрақтылығы экспорттан гөрі сенімге көбірек байланысты</a></blockquote>
+        <div class="who"><span class="ava" aria-hidden="true" style="background:#C8000D">АС</span><span><b>Айгерім Сейітова</b><span>экономист</span></span></div>
+      </article>
+      <article class="op story">
+        <blockquote><a class="go" href="#">Қала көлігін жоспарлау жаяу жүргіншіден басталуы керек</a></blockquote>
+        <div class="who"><span class="ava" aria-hidden="true" style="background:#5B6577">ЕҚ</span><span><b>Ерлан Қасымов</b><span>урбанист</span></span></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═══ digest ═══ -->
+  <section class="digest" id="digest" aria-labelledby="h-dig">
+    <div>
+      <h2 id="h-dig">Күннің басты 5 жаңалығы — таңғы 8:00-де поштаңызда</h2>
+      <p>Тегін. Жазылымнан кез келген уақытта бас тартуға болады.</p>
+    </div>
+    <form class="sub-form" novalidate data-sub>
+      <label class="sr" for="sub-email">Электрондық пошта</label>
+      <input id="sub-email" type="email" placeholder="name@mail.kz" autocomplete="email" aria-describedby="sub-note">
+      <button class="btn-sub" type="submit">Жазылу</button>
+      <p class="note" id="sub-note" aria-live="polite">Аптасына 5 хат, жарнамасыз.</p>
+      <a class="tg" href="#"><svg class="i"><use href="#i-tg"/></svg>Немесе Telegram арнамызға жазылыңыз</a>
+    </form>
+  </section>
+</div>
+</main>
+
+<!-- ═══ footer ═══ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div class="about">
+        <a href="#" class="logo" aria-label="elde.kz, басты бет"><svg class="lg" aria-hidden="true"><use href="#elde-logo"/></svg></a>
+        <p>Қазақстан мен әлемнің басты жаңалықтары — қазақ, орыс және ағылшын тілдерінде.</p>
+        <div class="contact"><span>Редакция: <a href="mailto:info@elde.kz">info@elde.kz</a></span><span>Жарнама: <a href="mailto:ads@elde.kz">ads@elde.kz</a></span></div>
+        <div class="soc">
+          <a href="#" aria-label="Telegram"><svg class="i"><use href="#i-tg"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg class="i"><use href="#i-ig"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg class="i"><use href="#i-yt"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg class="i"><use href="#i-tt"/></svg></a>
+        </div>
+      </div>
+      <nav aria-labelledby="f-sec"><h3 id="f-sec">Бөлімдер</h3><ul>
+        <li><a href="#">Саясат</a></li><li><a href="#">Экономика</a></li><li><a href="#">Қоғам</a></li><li><a href="#">Аймақтар</a></li><li><a href="#">Әлем</a></li><li><a href="#">Спорт</a></li><li><a href="#">Мәдениет</a></li></ul></nav>
+      <nav aria-labelledby="f-about"><h3 id="f-about">Жоба</h3><ul>
+        <li><a href="#">Редакция туралы</a></li><li><a href="#">Авторлар</a></li><li><a href="#">Жарнама</a></li><li><a href="#">Вакансиялар</a></li><li><a href="#">Байланыс</a></li></ul></nav>
+      <nav aria-labelledby="f-read"><h3 id="f-read">Оқырманға</h3><ul>
+        <li><a href="#">Жаңалық жіберу</a></li><li><a href="#">Редакциялық саясат</a></li><li><a href="#">Құпиялылық саясаты</a></li><li><a href="#">Пайдалану шарттары</a></li><li><a href="#">RSS</a></li></ul></nav>
+      <div class="apps"><h3>Қосымша</h3>
+        <a href="#" class="store"><svg class="i"><use href="#i-apple"/></svg><span><small>Жүктеп алу</small><b>App Store</b></span></a>
+        <a href="#" class="store"><svg class="i"><use href="#i-gp"/></svg><span><small>Жүктеп алу</small><b>Google Play</b></span></a>
+      </div>
+    </div>
+    <div class="bottom">
+      <span><span class="age">16+</span>© 2026 elde.kz. Материалдарды пайдаланғанда белсенді сілтеме міндетті.</span>
+      <nav aria-label="Құқықтық ақпарат"><a href="#">Құпиялылық</a><a href="#">Cookie</a><a href="#">Сайт картасы</a></nav>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ mobile ═══ -->
+<nav class="tabbar" aria-label="Негізгі мәзір">
+  <a href="#" aria-current="page"><svg class="i"><use href="#i-home"/></svg>Басты</a>
+  <a href="#content"><svg class="i"><use href="#i-list"/></svg>Таспа</a>
+  <a href="#sec-video"><svg class="i"><use href="#i-video"/></svg>Видео</a>
+  <a href="#sec-reg"><svg class="i"><use href="#i-pin"/></svg>Аймақтар</a>
+  <a href="#" data-search-open aria-controls="search"><svg class="i"><use href="#i-search"/></svg>Іздеу</a>
+</nav>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="scrim" data-drawer-close></div>
+  <div class="panel" role="dialog" aria-modal="true" aria-label="Мәзір">
+    <div class="ph-top"><svg class="lg" aria-hidden="true"><use href="#elde-logo"/></svg><button class="ibtn" aria-label="Мәзірді жабу" data-drawer-close><svg class="i"><use href="#i-x"/></svg></button></div>
+    <nav aria-label="Бөлімдер">
+      <a href="#">Басты</a><a href="#sec-pol">Саясат</a><a href="#sec-eco">Экономика</a><a href="#">Қоғам</a><a href="#sec-reg">Аймақтар</a><a href="#">Әлем</a><a href="#sec-three">Спорт</a><a href="#sec-three">Мәдениет</a><a href="#sec-three">Технология</a><a href="#sec-video">Видео</a><a href="#sec-op">Пікір</a>
+    </nav>
+    <div class="dfoot lang"><a href="#" aria-current="true">ҚАЗ</a><a href="#">РУС</a><a href="#">ENG</a></div>
+  </div>
+</div>
+
+<div class="search" id="search" aria-hidden="true">
+  <div class="scrim" data-search-close></div>
+  <div class="box" role="dialog" aria-modal="true" aria-label="Іздеу">
+    <div class="wrap">
+      <form role="search" onsubmit="return false">
+        <svg class="i" aria-hidden="true"><use href="#i-search"/></svg>
+        <label class="sr" for="q">Сайттан іздеу</label>
+        <input id="q" type="search" placeholder="Жаңалық, тақырып немесе автор" autocomplete="off">
+        <button class="ibtn" type="button" aria-label="Іздеуді жабу" data-search-close><svg class="i"><use href="#i-x"/></svg></button>
+      </form>
+      <div class="hints"><span>Жиі ізделетін:</span><a href="#">ауа райы</a><a href="#">теңге</a><a href="#">Салық кодексі</a><a href="#">ипотека</a><a href="#">мектеп</a></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const root = document.documentElement;
+
+  /* theme */
+  const dark = () => root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  const syncTheme = () => { const d = dark(); $$('[data-theme-toggle]').forEach(b => { b.setAttribute('aria-pressed', d); b.setAttribute('aria-label', d ? 'Күндізгі режим' : 'Түнгі режим'); }); $('meta[name="theme-color"]').content = d ? '#0A1120' : '#FFFFFF'; };
+  $$('[data-theme-toggle]').forEach(b => b.addEventListener('click', () => {
+    root.dataset.theme = dark() ? 'light' : 'dark';
+    try { localStorage.setItem('elde-theme', root.dataset.theme); } catch (e) {}
+    syncTheme();
+  }));
+  syncTheme();
+
+  /* sticky nav: compact state with mini logo */
+  const nav = $('.secnav');
+  const io = new IntersectionObserver(([e]) => nav.classList.toggle('stuck', !e.isIntersecting), { rootMargin: '-1px 0px 0px 0px' });
+  io.observe($('.mast'));
+
+  /* overlays: drawer + search share one open/close helper with focus return */
+  let lastFocus = null;
+  const open = (el, btns, focusSel) => {
+    lastFocus = document.activeElement; el.classList.add('open'); el.setAttribute('aria-hidden', 'false');
+    btns.forEach(b => b.setAttribute('aria-expanded', 'true')); document.body.style.overflow = 'hidden';
+    setTimeout(() => (focusSel ? $(focusSel, el) : $('button, a, input', el))?.focus(), 60);
+  };
+  const close = (el, btns) => {
+    if (!el.classList.contains('open')) return;
+    el.classList.remove('open'); el.setAttribute('aria-hidden', 'true');
+    btns.forEach(b => b.setAttribute('aria-expanded', 'false')); document.body.style.overflow = '';
+    lastFocus?.focus();
+  };
+  const drawer = $('#drawer'), dBtns = $$('[data-drawer-open]');
+  const search = $('#search'), sBtns = $$('[data-search-open]');
+  dBtns.forEach(b => b.addEventListener('click', () => open(drawer, dBtns)));
+  $$('[data-drawer-close]').forEach(b => b.addEventListener('click', () => close(drawer, dBtns)));
+  $$('#drawer nav a').forEach(a => a.addEventListener('click', () => close(drawer, dBtns)));
+  sBtns.forEach(b => b.addEventListener('click', e => { e.preventDefault(); open(search, sBtns, '#q'); }));
+  $$('[data-search-close]').forEach(b => b.addEventListener('click', () => close(search, sBtns)));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { close(drawer, dBtns); close(search, sBtns); }
+    if (e.key === '/' && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) { e.preventDefault(); open(search, sBtns, '#q'); }
+  });
+
+  /* breaking */
+  $('[data-breaking-close]')?.addEventListener('click', () => { $('[data-breaking]').hidden = true; });
+
+  /* feed tabs (arrow keys move between tabs) */
+  const tabs = $$('.tabs [role="tab"]');
+  const select = t => tabs.forEach(x => {
+    const on = x === t; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1;
+    $('#' + x.getAttribute('aria-controls')).hidden = !on;
+  });
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(t));
+    t.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length]; select(n); n.focus();
+    });
+  });
+
+  /* regions: map pins and chips filter the same list */
+  const items = $$('[data-rlist] li'), count = $('[data-rcount]');
+  const controls = $$('[data-city]').filter(el => el.tagName === 'BUTTON');
+  const names = {}; controls.forEach(b => { if (b.dataset.name) names[b.dataset.city] = b.dataset.name; });
+  const filter = city => {
+    controls.forEach(b => b.setAttribute('aria-pressed', b.dataset.city === city));
+    let n = 0; items.forEach(li => { const on = city === 'all' || li.dataset.city === city; li.hidden = !on; n += on; });
+    count.textContent = city === 'all' ? '' : names[city] + ': ' + n + ' жаңалық';
+  };
+  controls.forEach(b => b.addEventListener('click', () => filter(b.getAttribute('aria-pressed') === 'true' && b.dataset.city !== 'all' ? 'all' : b.dataset.city)));
+
+  /* digest form */
+  const form = $('[data-sub]');
+  form?.addEventListener('submit', e => {
+    e.preventDefault();
+    const inp = $('input', form), note = $('.note', form), ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inp.value.trim());
+    inp.setAttribute('aria-invalid', !ok);
+    note.className = 'note ' + (ok ? 'ok' : 'err');
+    note.textContent = ok ? 'Дайын! Алғашқы хат ертең таңертең келеді.' : 'Электрондық поштаны дұрыс енгізіңіз: мысалы, name@mail.kz';
+    if (ok) inp.value = '';
+  });
+  $('input', form)?.addEventListener('input', e => { e.target.removeAttribute('aria-invalid'); });
+})();
+</script>
+</body>
+</html>
